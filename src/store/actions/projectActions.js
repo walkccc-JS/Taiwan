@@ -33,7 +33,6 @@ export const deleteProject = (projectId) => {
 
 export const updateProject = (project) => {
   return (dispatch, getState, { getFirestore }) => {
-
     // mask async call to database
     const firestore = getFirestore()
     firestore.collection('projects').doc(project.projectId).update({

@@ -7,17 +7,19 @@ import { Redirect } from 'react-router-dom'
 
 class UpdateUser extends Component {
   state = {
+    uid: '',
     id: '',
     email: '',
     password: '',
     firstName: '',
-    lastName: ''
+    lastName: ''    
   }
 
   componentDidMount() {
-    const { user } = this.props
+    const { auth, user } = this.props
     if (user) {
       this.setState({
+        uid: auth.uid,
         id: user.id,
         email: user.email,
         password: user.password,
@@ -34,9 +36,10 @@ class UpdateUser extends Component {
   }
 
   handleSubmit = (e) => {
+    console.log(this.state)
     e.preventDefault()
     this.props.updateUser(this.state)
-    this.props.history.push('/users/' + this.state.userId)
+    this.props.history.push('/user/' + this.state.id)
   }
 
   render() {

@@ -49,11 +49,33 @@ export const signOut = () => {
 }
 
 export const updateUser = (user) => {
-  return (dispatch, getState, { getFirestore }) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firebase = getFirebase()
+    var currentUser = firebase.auth().currentUser
+
+    currentUser.updateProfile({
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      password: user.password,
+      initials: user.firstName[0] + user.lastName[0]
+    }).then(() => {
+      currentUser.updateEmail(user.email)
+    }).then(() => {
+      currentUser.updatePassword(user.password)
+    }).then(() => {
+      dispatch({ type: 'UPDATE_USER', user })
+    }).catch(err => { 
+      dispatch({ type: 'UPDATE_USER_ERROR', err })
+    })
+
+
+    // console.log(currentUser)
 
     // mask async call to database
     const firestore = getFirestore()
-    firestore.collection('users').doc(user.userId).update({
+    firestore.collection('users').doc(user.uid).update({
       id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,

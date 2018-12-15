@@ -1,13 +1,15 @@
 import React from 'react'
 import moment from 'moment'
 
-const Notifications = (props) => {
-  const { notifications } = props
+const Notifications = ({ notifications }) => {
   return (
     <div className="section">
       <div className="card z-depth-0">
         <div className="card-content">
-          <span className="card-title">Notifications</span>
+          { notifications ? 
+            <span className="card-title">Notifications</span>          
+            : null }
+          
           <ul className="notifications">
             { notifications && notifications.map(item => {
               return (

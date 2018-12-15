@@ -21,10 +21,8 @@ class Post extends Component {
 
   render() {
     const { postId, post, user, auth } = this.props
-    console.log(user)
 
     if (!auth.uid) return <Redirect to ='/signin' />
-
     if (post && user) {
       return (
         <div className="row">

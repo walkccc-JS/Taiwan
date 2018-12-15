@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createPost } from '../../store/actions/postActions'
+import { addPost } from '../../store/actions/postActions'
 import { Redirect } from 'react-router-dom'
 
-class CreatePost extends Component {
+class AddPost extends Component {
   state = {
     title: '',
     content: ''
@@ -17,7 +17,7 @@ class CreatePost extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.createPost(this.state)
+    this.props.addPost(this.state)
     this.props.history.push('/')
   }
 
@@ -53,8 +53,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createPost: (post) => dispatch(createPost(post))
+    addPost: (post) => dispatch(addPost(post))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePost)
+export default connect(mapStateToProps, mapDispatchToProps)(AddPost)

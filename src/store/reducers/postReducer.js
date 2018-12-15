@@ -1,18 +1,18 @@
-const initState = {
-  posts: [
-    { id: '1', title: 'Title 1', content: 'blah' },
-    { id: '2', title: 'Title 2', content: 'blah' },
-    { id: '3', title: 'Title 3', content: 'blah' }
-  ]
-}
+const initState = {}
 
 const postReducer = (state = initState, action) => {
   switch (action.type) {
-    case 'CREATE_POST':
-      console.log('created post', action.post)
+    case 'ADD_POST':
+      console.log('added post', action.post)
       return state
-    case 'CREATE_POST_ERROR':
-      console.log('created post error', action.err)
+    case 'ADD_POST_ERROR':
+      console.log('added post error', action.err)
+      return state
+    case 'UPDATE_POST':
+      console.log('updated post', action.post)
+      return state
+    case 'UPDATE_POST_ERROR':
+      console.log('updated post error', action.err)
       return state
     case 'DELETE_POST':
       console.log('deleted post', action.postId)

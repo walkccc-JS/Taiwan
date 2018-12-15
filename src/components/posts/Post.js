@@ -9,21 +9,16 @@ import moment from 'moment'
 
 class Post extends Component {
   handleDelete = (e) => {
-    const { postId, post, auth } = this.props
-
-    if (post && post.authorId === auth.uid) {
-      this.props.deletePost(postId)
-      this.props.history.push('/')
-    } else {
-      this.props.history.push('/posts/' + postId)
-    }
+    const { postId } = this.props
+    this.props.deletePost(postId)
+    this.props.history.push('/')
   }
 
   render() {
-    const { postId, post, user, auth } = this.props
+    const { postId, post, auth } = this.props
 
     if (!auth.uid) return <Redirect to ='/signin' />
-    if (post && user) {
+    if (post) {
       return (
         <div className="row">
           <div className="col s12 m8 offset-m2">
@@ -33,13 +28,13 @@ class Post extends Component {
                 <span className="card-title">{ post.title }</span>
                 <p>{ post.content }</p>
                 <br />
-                <div>Posted by <Link to={'/user/' + user.id}>
+                <div>Posted by <Link to={'/user/' + post.authorId}>
                   { post.authorFirstName } { post.authorLastName }
                 </Link></div>
                 <div>{ moment(post.createdAt.toDate()).calendar() }</div>
               </div>
 
-              { post && post.authorId === auth.uid ?
+              { post && post.authorUid === auth.uid ?
               <div className="card-action">
                 <Link to='#' onClick={this.handleDelete} className="red-text">
                   <i className="material-icons">delete</i>
@@ -74,13 +69,10 @@ const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id
   const posts = state.firestore.data.posts
   const post = posts ? posts[id] : null
-  const users = state.firestore.data.users
-  const user = users && post ? users[post.authorId] : null
 
   return {
     post: post,
     postId: id,
-    user: user,
     auth: state.firebase.auth
   }
 }
@@ -94,7 +86,6 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([
-    { collection: 'posts' },
-    { collection: 'users' }
+    { collection: 'posts' }
   ])
 )(Post)

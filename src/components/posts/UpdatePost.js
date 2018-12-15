@@ -38,7 +38,6 @@ class UpdatePost extends Component {
   render() {
     const { auth, post } = this.props
     if (!auth.uid) return <Redirect to ='/signin' />
-    console.log(this.props)
 
     if (post) {
       return (

@@ -7,7 +7,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import Post from './components/posts/Post';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
-import CreatePost from './components/posts/CreatePost';
+import AddPost from './components/posts/AddPost';
 import UpdatePost from './components/posts/UpdatePost';
 
 class App extends Component {
@@ -23,7 +23,7 @@ class App extends Component {
               <Route path='/edit/:id' component={UpdatePost} />
               <Route path='/signin' component={SignIn} />
               <Route path='/signup' component={SignUp} />
-              <Route path='/create' component={CreatePost} />
+              <Route path='/create' component={AddPost} />
               <Route path='/user/edit/:id' component={UpdateUser} />
               <Route path='/user/:id' component={User} />
             </Switch>

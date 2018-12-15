@@ -36,7 +36,6 @@ class UpdateUser extends Component {
   }
 
   handleSubmit = (e) => {
-    console.log(this.state)
     e.preventDefault()
     this.props.updateUser(this.state)
     this.props.history.push('/user/' + this.state.id)

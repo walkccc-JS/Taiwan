@@ -1,13 +1,13 @@
 export const signUp = (newUser) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    const firebase = getFirebase()
-    const firestore = getFirestore()
+    const fb = getFirebase()
+    const db = getFirestore()
 
-    firebase.auth().createUserWithEmailAndPassword(
+    fb.auth().createUserWithEmailAndPassword(
       newUser.email,
       newUser.password
     ).then(res => {
-      return firestore.collection('users').doc(res.user.uid).set({
+      return db.collection('users').doc(res.user.uid).set({
         id: newUser.id,
         firstName: newUser.firstName,
         lastName: newUser.lastName,
@@ -15,77 +15,56 @@ export const signUp = (newUser) => {
         password: newUser.password,
         initials: newUser.firstName[0] + newUser.lastName[0]
       })
-    }).then(() => {
-      dispatch({ type: 'SIGNUP_SUCCESS' })
-    }).catch(err => {
-      dispatch({ type: 'SIGNUP_ERROR' ,err })
     })
+    .then(dispatch({ type: 'SIGNUP' }))
+    .catch(err => dispatch({ type: 'SIGNUP_ERROR' ,err }))
   }
 }
 
-export const signIn = (credentials) => {
+export const signIn = (creds) => {
   return (dispatch, getState, { getFirebase }) => {
-    const firebase = getFirebase()
+    const fb = getFirebase()
 
-    firebase.auth().signInWithEmailAndPassword(
-      credentials.email,
-      credentials.password
-    ).then(() => {
-      dispatch({ type: 'LOGIN_SUCCESS' })
-    }).catch(err => {
-      dispatch({ type: 'LOGIN_ERROR', err })
-    })
+    fb.auth().signInWithEmailAndPassword(creds.email, creds.password)
+    .then(dispatch({ type: 'SIGNIN' }))
+    .catch(err => dispatch({ type: 'SIGNIN_ERROR', err }))
   }
 }
 
 export const signOut = () => {
   return (dispatch, getState, { getFirebase }) => {
-    const firebase = getFirebase()
+    const fb = getFirebase()
 
-    firebase.auth().signOut().then(() => {
-      dispatch({ type: 'SIGNOUT_SUCCESS' })
-    })
+    fb.auth().signOut().then(dispatch({ type: 'SIGNOUT' }))
   }
 }
 
 export const updateUser = (user) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    const firebase = getFirebase()
-    var currentUser = firebase.auth().currentUser
+    const fb = getFirebase()
+    const currentUser = fb.auth().currentUser
+    const profile = getState().firebase.profile
 
-    currentUser.updateProfile({
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      password: user.password,
-      initials: user.firstName[0] + user.lastName[0]
-    }).then(() => {
+    console.log(user)
+
+    if (user.email !== profile.email) {
       currentUser.updateEmail(user.email)
-    }).then(() => {
+      .then(dispatch({ type: 'UPDATE_EMAIL' }))
+      .catch(err => dispatch({ type: 'UPDATE_EMAIL_ERROR', err }))
+    }
+
+    if (user.password !== profile.password) {
       currentUser.updatePassword(user.password)
-    }).then(() => {
-      dispatch({ type: 'UPDATE_USER', user })
-    }).catch(err => { 
-      dispatch({ type: 'UPDATE_USER_ERROR', err })
-    })
+      .then(dispatch({ type: 'UPDATE_PASSWORD' }))
+      .catch(err => dispatch({ type: 'UPDATE_PASSWORD_ERROR', err }))
+    }
 
-
-    // console.log(currentUser)
-
-    // mask async call to database
-    const firestore = getFirestore()
-    firestore.collection('users').doc(user.uid).update({
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      password: user.password,
+    const db = getFirestore()
+    db.collection('users').doc(user.uid).update({
+      ...user,
       initials: user.firstName[0] + user.lastName[0]
-    }).then(() => {
-      dispatch({ type: 'UPDATE_USER', user })
-    }).catch(err => { 
-      dispatch({ type: 'UPDATE_USER_ERROR', err })
     })
+    .then(dispatch({ type: 'UPDATE_USER', user }))
+    .catch(err => dispatch({ type: 'UPDATE_USER_ERROR', err }))
   }
 }

@@ -1,21 +1,47 @@
-import React from 'react'
+import React, { Component } from 'react'
+import M from 'materialize-css/dist/js/materialize.min.js'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
 
-const Navbar = (props) => {
-  const { auth, profile } = props
-  const links = auth.uid ? <SignedInLinks profile={profile}/> : <SignedOutLinks />
+class Navbar extends Component {
+  componentDidMount() {
+    const elems = document.querySelectorAll('.sidenav');
+    M.Sidenav.init(elems, {});
+  }
 
-  return (
-    <nav className="nav-wrapper grey darken-3">
-      <div className="container">
-        <Link to='/' className="left brand-logo">Taiwan</Link>
-        {links}
+  render() {
+    const { auth, profile } = this.props
+    const links = auth.uid ?
+      <SignedInLinks profile={profile} /> : 
+      <SignedOutLinks />
+
+    return (
+      <div>
+        <nav className="white nav-extended">
+          <div className="nav-wrapper">
+            <div className="container">
+            <Link to='/' className="brand-logo black-text">Taiwan</Link>
+            <a href='#' data-target="mobile-demo" className="sidenav-trigger">
+              <i className="material-icons black-text">menu</i>
+            </a>            
+            <ul id="nav-mobile" className="right hide-on-med-and-down">
+              {links}
+            </ul>
+            </div>
+          </div>
+        </nav>
+        <ul className="sidenav" id="mobile-demo">
+          <li><a href='/' className="black-text">
+            <i className="material-icons black-text">home</i>
+            Home
+          </a></li>
+          {links}
+        </ul>
       </div>
-    </nav>
-  )
+    )
+  }
 }
 
 const mapStateToProps = (state) => {

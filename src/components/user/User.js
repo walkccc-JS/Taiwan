@@ -10,20 +10,23 @@ class User extends Component {
 
     if (user) {
       return (
-        <div className="container row">
-          <div className="col s12 offset-m3 m6">
-            <div className="card blue-grey darken-1">
-              <div className="card-content white-text">
-                <span className="card-title">{user.firstName} {user.lastName}</span>
-                <p>@{user.id}</p>
-                <p>{user.email}</p>
+        <div className="row">
+          <div className="col s12 m6 offset-m3">
+            <div className="card">
+              <div className="card-image">
+                <img src="https://imgur.com/kGfAjR2.png" alt="hippo" />
+                <span className="card-title">{ user.firstName } { user.lastName }</span>
 
                 { user && user.email === auth.email ?
-                  <div className="container">
-                    <Link to={'/user/edit/' + user.id} className="btn pink lighten-1" user={user}>Update</Link>
-                  </div>
+                  <Link to={'/user/edit/' + user.id} user={user} className="btn-floating halfway-fab waves-effect waves-light red">
+                    <i className="material-icons">create</i>
+                  </Link>
                   : null }
 
+              </div>
+              <div className="card-content">
+                <p><a href={'/user/' + user.id}>@{ user.id }</a></p>
+                <p><a href={'mailto:' + user.email}>{ user.email }</a></p>
               </div>
             </div>
           </div>
@@ -31,8 +34,17 @@ class User extends Component {
       )
     } else {
       return (
-        <div className="container center">
-          <p>Loading the user...</p>
+        <div className="row">
+          <div className="col s12 m6 offset-m3">
+            <div className="card">
+              <div className="card-image">
+                <img src="https://imgur.com/kGfAjR2.png" alt="hippo" />
+              </div>
+              <div className="card-content">
+                <p>Loading the user...</p>
+              </div>
+            </div>
+          </div>
         </div>
       )
     }
@@ -40,11 +52,11 @@ class User extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const uid = ownProps.match.params.id
+  const id = ownProps.match.params.id
   const users = state.firestore.data.users
 
   for (let key in users) {
-    if (users[key].id === uid) {
+    if (users[key].id === id) {
       var user = users[key];
       break;
     }

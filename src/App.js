@@ -16,16 +16,18 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navbar />
-          <Switch>
-            <Route exact path='/' component={Dashboard} />
-            <Route path='/projects/:id' component={ProjectDetails} />
-            <Route path='/edit/:id' component={UpdateProject} />
-            <Route path='/signin' component={SignIn} />
-            <Route path='/signup' component={SignUp} />
-            <Route path='/create' component={CreateProject} />
-            <Route path='/user/edit/:id' component={UpdateUser} />
-            <Route path='/user/:id' component={User} />
-          </Switch>
+          <div className="container">
+            <Switch>
+              <Route exact path='/' component={Dashboard} />
+              <Route path='/projects/:id' component={ProjectDetails} />
+              <Route path='/edit/:id' component={UpdateProject} />
+              <Route path='/signin' component={SignIn} />
+              <Route path='/signup' component={SignUp} />
+              <Route path='/create' component={CreateProject} />
+              <Route path='/user/edit/:id' component={UpdateUser} />
+              <Route path='/user/:id' component={User} />
+            </Switch>
+          </div>
         </div>
       </BrowserRouter>
     );

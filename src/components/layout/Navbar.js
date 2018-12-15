@@ -23,9 +23,9 @@ class Navbar extends Component {
           <div className="nav-wrapper">
             <div className="container">
             <Link to='/' className="brand-logo black-text">Taiwan</Link>
-            <a href='#' data-target="mobile-demo" className="sidenav-trigger">
+            <Link to='#' data-target="mobile-demo" className="sidenav-trigger">
               <i className="material-icons black-text">menu</i>
-            </a>            
+            </Link>            
             <ul id="nav-mobile" className="right hide-on-med-and-down">
               {links}
             </ul>

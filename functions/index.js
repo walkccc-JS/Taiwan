@@ -12,14 +12,14 @@ const createNotification = (notification => {
     .then(doc => console.log('notification added', doc))
 })
 
-exports.projectCreated = functions.firestore
-  .document('projects/{projectId}')
+exports.postCreated = functions.firestore
+  .document('posts/{postId}')
   .onCreate(doc => {
 
-    const project = doc.data()
+    const post = doc.data()
     const notification = {
-      content: 'Added a new project',
-      user: `${project.authorFirstName} ${project.authorLastName}`,
+      content: 'Added a new post',
+      user: `${post.authorFirstName} ${post.authorLastName}`,
       time: admin.firestore.FieldValue.serverTimestamp()
     }
 

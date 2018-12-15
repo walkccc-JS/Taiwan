@@ -1,47 +1,47 @@
-export const createProject = (project) => {
+export const createPost = (post) => {
   return (dispatch, getState, { getFirestore }) => {
     // make async call to database
     const firestore = getFirestore()
     const profile = getState().firebase.profile
     const authorId = getState().firebase.auth.uid
 
-    firestore.collection('projects').add({
-      ...project,
+    firestore.collection('posts').add({
+      ...post,
       authorFirstName: profile.firstName,
       authorLastName: profile.lastName,
       authorId: authorId,
       createdAt: new Date()
     }).then(() => {
-      dispatch({ type: 'CREATE_PROJECT', project })
+      dispatch({ type: 'CREATE_POST', post })
     }).catch(err => {
-      dispatch({ type: 'CREATE_PROJECT_ERROR', err })
+      dispatch({ type: 'CREATE_POST_ERROR', err })
     })
   }
 }
 
-export const deleteProject = (projectId) => {
+export const deletePost = (postId) => {
   return (dispatch, getState, { getFirestore }) => {
     // make async call to database
     const firestore = getFirestore()
-    firestore.collection('projects').doc(projectId).delete().then(() => {
-      dispatch({ type: 'DELETE_PROJECT', projectId })
+    firestore.collection('posts').doc(postId).delete().then(() => {
+      dispatch({ type: 'DELETE_POST', postId })
     }).catch(err => {
-      dispatch({ type: 'DELETE_PROJECT_ERROR', err })
+      dispatch({ type: 'DELETE_POST_ERROR', err })
     })
   }
 }
 
-export const updateProject = (project) => {
+export const updatePost = (post) => {
   return (dispatch, getState, { getFirestore }) => {
     // mask async call to database
     const firestore = getFirestore()
-    firestore.collection('projects').doc(project.projectId).update({
-      title: project.title,
-      content: project.content
+    firestore.collection('posts').doc(post.postId).update({
+      title: post.title,
+      content: post.content
     }).then(() => {
-      dispatch({ type: 'UPDATE_PROJECT', project })
+      dispatch({ type: 'UPDATE_POST', post })
     }).catch(err => { 
-      dispatch({ type: 'UPDATE_PROJECT_ERROR', err })
+      dispatch({ type: 'UPDATE_POST_ERROR', err })
     })
   }
 }

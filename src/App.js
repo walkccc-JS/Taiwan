@@ -4,11 +4,11 @@ import Navbar from './components/layout/Navbar';
 import User from './components/user/User';
 import UpdateUser from './components/user/UpdateUser';
 import Dashboard from './components/dashboard/Dashboard';
-import ProjectDetails from './components/projects/ProjectDetails';
+import Post from './components/posts/Post';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
-import CreateProject from './components/projects/CreateProject';
-import UpdateProject from './components/projects/UpdateProject';
+import CreatePost from './components/posts/CreatePost';
+import UpdatePost from './components/posts/UpdatePost';
 
 class App extends Component {
   render() {
@@ -19,11 +19,11 @@ class App extends Component {
           <div className="container">
             <Switch>
               <Route exact path='/' component={Dashboard} />
-              <Route path='/projects/:id' component={ProjectDetails} />
-              <Route path='/edit/:id' component={UpdateProject} />
+              <Route path='/posts/:id' component={Post} />
+              <Route path='/edit/:id' component={UpdatePost} />
               <Route path='/signin' component={SignIn} />
               <Route path='/signup' component={SignUp} />
-              <Route path='/create' component={CreateProject} />
+              <Route path='/create' component={CreatePost} />
               <Route path='/user/edit/:id' component={UpdateUser} />
               <Route path='/user/:id' component={User} />
             </Switch>

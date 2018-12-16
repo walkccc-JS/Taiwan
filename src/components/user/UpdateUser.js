@@ -93,7 +93,7 @@ class UpdateUser extends Component {
   }
 }
 const mapStateToProps = (state, ownProps) => {
-  const uid = ownProps.match.params.id
+  const uid = ownProps.match.params.uid
   const users = state.firestore.data.users
 
   for (let key in users) {

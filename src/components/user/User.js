@@ -55,7 +55,7 @@ class User extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const id = ownProps.match.params.id
+  const id = ownProps.match.params.uid
   const users = state.firestore.data.users
 
   for (let key in users) {

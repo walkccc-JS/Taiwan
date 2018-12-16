@@ -8,16 +8,13 @@ class User extends Component {
   render() {
     const { user, auth } = this.props
 
-    // console.log(user)
-    // console.log(auth)
-
     if (user) {
       return (
         <div className="row">
           <div className="col s12 m6 offset-m3">
             <div className="card">
               <div className="card-image">
-                <img src="https://imgur.com/kGfAjR2.png" alt="hippo" />
+                <img src="https://i1.wp.com/blog.dcshow.cc/wp-content/uploads/2018/01/dc-show-cover.jpg?w=945" alt="hippo" />
                 <span className="card-title">{ user.firstName } { user.lastName }</span>
 
                 { user && user.email === auth.email ?
@@ -30,6 +27,7 @@ class User extends Component {
               <div className="card-content">
                 <p><a href={'/user/' + user.id}>@{ user.id }</a></p>
                 <p><a href={'mailto:' + user.email}>{ user.email }</a></p>
+                <p><Link to={'/user/' + user.id + '/posts'}>See { user.firstName } { user.lastName }'s all posts</Link></p>
               </div>
             </div>
           </div>
@@ -55,15 +53,8 @@ class User extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const id = ownProps.match.params.uid
-  const users = state.firestore.data.users
-
-  for (let key in users) {
-    if (users[key].id === id) {
-      var user = users[key];
-      break;
-    }
-  }
+  const users = state.firestore.ordered.users
+  const user = users ? users[0] : null
 
   return {
     user: user,
@@ -73,7 +64,12 @@ const mapStateToProps = (state, ownProps) => {
 
 export default compose(
   connect(mapStateToProps),
-  firestoreConnect([
-    { collection: 'users' }
-  ])
+  firestoreConnect(props => {
+    const uid = props.match.params.uid
+    return (
+      [
+        { collection: 'users', where: ['id', '==', uid] }
+      ]
+    )
+  })
 )(User)

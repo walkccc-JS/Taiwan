@@ -4,6 +4,7 @@ import Navbar from './components/layout/Navbar';
 import User from './components/user/User';
 import UpdateUser from './components/user/UpdateUser';
 import Dashboard from './components/dashboard/Dashboard';
+import Posts from './components/posts/Posts';
 import Post from './components/posts/Post';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
@@ -21,10 +22,14 @@ class App extends Component {
               <Route exact path='/' component={Dashboard} />
               <Route path='/posts/:id' component={Post} />
               <Route path='/edit/:id' component={UpdatePost} />
+              
               <Route path='/signin' component={SignIn} />
               <Route path='/signup' component={SignUp} />
               <Route path='/create' component={AddPost} />
+
+              <Route exact path='/user/:uid/posts' component={Posts} />
               <Route path='/user/edit/:uid' component={UpdateUser} />
+              <Route path='/user/:uid/posts/:id' component={Post} />
               <Route path='/user/:uid' component={User} />
             </Switch>
           </div>

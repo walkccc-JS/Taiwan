@@ -28,7 +28,7 @@ class Post extends Component {
                 <span className="card-title">{ post.title }</span>
                 <p>{ post.content }</p>
                 <br />
-                <div>Posted by <Link to={'/user/' + post.authorId}>
+                <div>Posted by <Link to={'/' + post.authorId}>
                   { post.authorFirstName } { post.authorLastName }
                 </Link></div>
                 <div>{ moment(post.createdAt.toDate()).calendar() }</div>

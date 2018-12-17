@@ -38,11 +38,13 @@ class UpdateUser extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.updateUser(this.state)
-    this.props.history.push('/user/' + this.state.id)
+    this.props.history.push('/' + this.state.id)
   }
 
   render() {
     const { auth, user } = this.props
+    console.log(user)
+    console.log(auth)
 
     if (user && auth.email !== user.email) return <Redirect to ={'/user/' + user.id} />
     if (user) {

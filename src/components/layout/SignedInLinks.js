@@ -6,7 +6,7 @@ const SignedInLinks = (props) => {
   return (
     <ul>
       <li>
-        <a href={'/user/' + props.profile.id} className="black-text">
+        <a href={'/' + props.profile.id} className="black-text">
           Hi, {props.profile.id}
         </a>
       </li>

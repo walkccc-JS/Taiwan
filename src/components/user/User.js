@@ -7,6 +7,8 @@ import { compose } from 'redux'
 class User extends Component {
   render() {
     const { user, auth } = this.props
+    // console.log(user)
+    // console.log(auth)
 
     if (user) {
       return (
@@ -14,20 +16,20 @@ class User extends Component {
           <div className="col s12 m6 offset-m3">
             <div className="card">
               <div className="card-image">
-                <img src="https://i1.wp.com/blog.dcshow.cc/wp-content/uploads/2018/01/dc-show-cover.jpg?w=945" alt="hippo" />
+                <img src="https://i1.wp.com/blog.dcshow.cc/wp-content/uploads/2018/01/dc-show-cover.jpg?w=945" alt="girl" />
                 <span className="card-title">{ user.firstName } { user.lastName }</span>
 
                 { user && user.email === auth.email ?
-                  <Link to={'/user/edit/' + user.id} user={user} className="btn-floating halfway-fab waves-effect waves-light red">
+                  <Link to={'/edit/' + user.id} user={user} className="btn-floating halfway-fab waves-effect waves-light red">
                     <i className="material-icons">create</i>
                   </Link>
                   : null }
 
               </div>
               <div className="card-content">
-                <p><a href={'/user/' + user.id}>@{ user.id }</a></p>
+                <p><a href={'/' + user.id}>@{ user.id }</a></p>
                 <p><a href={'mailto:' + user.email}>{ user.email }</a></p>
-                <p><Link to={'/user/' + user.id + '/posts'}>See { user.firstName } { user.lastName }'s all posts</Link></p>
+                <p><Link to={'/' + user.id + '/posts'}>See { user.firstName } { user.lastName }'s all posts</Link></p>
               </div>
             </div>
           </div>
@@ -39,7 +41,7 @@ class User extends Component {
           <div className="col s12 m6 offset-m3">
             <div className="card">
               <div className="card-image">
-                <img src="https://imgur.com/kGfAjR2.png" alt="hippo" />
+                <img src="https://i1.wp.com/blog.dcshow.cc/wp-content/uploads/2018/01/dc-show-cover.jpg?w=945" alt="girl" />
               </div>
               <div className="card-content">
                 <p>Loading the user...</p>

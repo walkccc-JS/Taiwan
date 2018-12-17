@@ -20,17 +20,17 @@ class App extends Component {
           <div className="container">
             <Switch>
               <Route exact path='/' component={Dashboard} />
-              <Route path='/posts/:id' component={Post} />
-              <Route path='/edit/:id' component={UpdatePost} />
-              
-              <Route path='/signin' component={SignIn} />
-              <Route path='/signup' component={SignUp} />
-              <Route path='/create' component={AddPost} />
+              <Route exact path='/signin' component={SignIn} />
+              <Route exact path='/signup' component={SignUp} />
+              <Route exact path='/create' component={AddPost} />
 
-              <Route exact path='/user/:uid/posts' component={Posts} />
-              <Route path='/user/edit/:uid' component={UpdateUser} />
-              <Route path='/user/:uid/posts/:id' component={Post} />
-              <Route path='/user/:uid' component={User} />
+              <Route path='/posts/:id' component={Post} />
+              <Route path='/edit/posts/:id' component={UpdatePost} />
+
+              <Route path='/:uid/posts/:id' component={Post} />
+              <Route path='/:uid/posts' component={Posts} />
+              <Route path='/edit/:uid' component={UpdateUser} />
+              <Route path='/:uid' component={User} />
             </Switch>
           </div>
         </div>

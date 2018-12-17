@@ -46,6 +46,7 @@ export const updateUser = (user) => {
     const profile = getState().firebase.profile
 
     console.log(user)
+    console.log(profile)
 
     if (user.email !== profile.email) {
       currentUser.updateEmail(user.email)
@@ -66,5 +67,17 @@ export const updateUser = (user) => {
     })
     .then(dispatch({ type: 'UPDATE_USER', user }))
     .catch(err => dispatch({ type: 'UPDATE_USER_ERROR', err }))
+
+    db.collection('posts').where('authorId', '==', profile.id)
+    .get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        db.collection('posts').doc(doc.id).update({
+          authorFirstName: user.firstName,
+          authorLastName: user.lastName,
+          authorId: user.id, 
+        })
+      })
+    })
   }
 }

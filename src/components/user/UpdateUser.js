@@ -43,8 +43,6 @@ class UpdateUser extends Component {
 
   render() {
     const { auth, user } = this.props
-    console.log(user)
-    console.log(auth)
 
     if (user && auth.email !== user.email) return <Redirect to ={'/user/' + user.id} />
     if (user) {
@@ -97,18 +95,11 @@ class UpdateUser extends Component {
 const mapStateToProps = (state, ownProps) => {
   const users = state.firestore.ordered.users
   const user = users ? users[0] : null
+  const uid = user ? user.id : null
 
-  // for (let key in users) {
-  //   if (users[key].id === uid) {
-  //     var user = users[key];
-  //     break;
-  //   }
-  // }
-
-  // console.log(user)
   return {
     user: user,
-    uid: user.id,
+    uid: uid,
     auth: state.firebase.auth
   }
 }

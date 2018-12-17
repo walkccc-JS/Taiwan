@@ -17,6 +17,8 @@ class UpdateUser extends Component {
 
   componentDidMount() {
     const { auth, user } = this.props
+    console.log(user)
+
     if (user) {
       this.setState({
         uid: auth.uid,
@@ -36,6 +38,7 @@ class UpdateUser extends Component {
   }
 
   handleSubmit = (e) => {
+    // console.log(this.state)
     e.preventDefault()
     this.props.updateUser(this.state)
     this.props.history.push('/' + this.state.id)
@@ -106,7 +109,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateUser: (uid) => dispatch(updateUser(uid))
+    updateUser: (user) => dispatch(updateUser(user))
   }
 }
 

@@ -45,9 +45,6 @@ export const updateUser = (user) => {
     const currentUser = fb.auth().currentUser
     const profile = getState().firebase.profile
 
-    console.log(user)
-    console.log(profile)
-
     if (user.email !== profile.email) {
       currentUser.updateEmail(user.email)
       .then(dispatch({ type: 'UPDATE_EMAIL' }))

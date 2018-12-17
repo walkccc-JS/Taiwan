@@ -95,33 +95,38 @@ class UpdateUser extends Component {
   }
 }
 const mapStateToProps = (state, ownProps) => {
-  const uid = ownProps.match.params.uid
-  const users = state.firestore.data.users
+  const users = state.firestore.ordered.users
+  const user = users ? users[0] : null
 
-  for (let key in users) {
-    if (users[key].id === uid) {
-      var user = users[key];
-      break;
-    }
-  }
+  // for (let key in users) {
+  //   if (users[key].id === uid) {
+  //     var user = users[key];
+  //     break;
+  //   }
+  // }
 
   // console.log(user)
   return {
     user: user,
-    userId: uid,
+    uid: user.id,
     auth: state.firebase.auth
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateUser: (userId) => dispatch(updateUser(userId))
+    updateUser: (uid) => dispatch(updateUser(uid))
   }
 }
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([
-    { collection: 'users' }
-  ])
+  firestoreConnect(props => {
+    const uid = props.match.params.uid
+    return (
+      [
+        { collection: 'users', where: ['id', '==', uid] }
+      ]
+    )
+  })
 )(UpdateUser)

@@ -80,3 +80,27 @@ export const updateUser = (user) => {
     })
   }
 }
+
+export const deleteUser = (uid) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const fb = getFirebase()
+    const db = getFirestore()
+    const currentUser = fb.auth().currentUser
+
+    currentUser.delete()
+    .then(dispatch({ type: 'DELETE_USER_AUTH ' }))
+    .catch(err => dispatch({ type: 'DELETE_USER_AUTH_ERROR '}, err))
+
+    db.collection('users').doc(uid).delete()
+    .then(dispatch({ type: 'DELETE_USER', uid }))
+    .catch(err => dispatch({ type: 'DELETE_USER_ERROR', err }))
+
+    db.collection('posts').where('authorUid', '==', uid)
+    .get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        db.collection('posts').doc(doc.id).delete()
+      })
+    })
+  }
+}

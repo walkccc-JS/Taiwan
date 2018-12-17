@@ -4,50 +4,59 @@ const initState = {
 
 const authReducer = (state = initState, action) => {
   switch (action.type) {
+    // Auth
     case 'SIGNUP':
-      console.log('signup')
-      return {
-        ...state,
-        authError: null
-      }
+      console.log('SIGNUP')
+      return { ...state, authError: null }
     case 'SIGNUP_ERROR':
-      console.log('signup error')
-      return {
-        ...state,
-        authError: action.err.message
-      }
+      console.log('SIGNUP_ERROR')
+      return { ...state, authError: action.err.message }
     case 'SIGNIN':
-      console.log('signin')
-      return {
-        ...state,
-        authError: null
-      }
+      console.log('SIGNIN')
+      return { ...state, authError: null }
     case 'SIGNIN_ERROR':
-      console.log('signin error')
-      return {
-        ...state,
-        authError: 'signin failed'
-      }
+      console.log('SIGNIN_ERROR')
+      return { ...state, authError: action.err.message }
     case 'SIGNOUT':
-      console.log('signout')
+      console.log('SIGNOUT')
       return state
+
+    // Update email
     case 'UPDATE_EMAIL':
-      console.log('updated email')
-      return state
+      console.log('UPDATE_EMAIL')
+      return { state, authError: null }
     case 'UPDATE_EMAIL_ERROR':
-      console.log('updated email error')
-      return state
+      console.log('UPDATE_EMAIL_ERROR')
+      return { ...state, authError: action.err.message }
+
+    // Update password
     case 'UPDATE_PASSWORD':
-      console.log('updated password')
-      return state
+      console.log('UPDATE_PASSWORD')
+      return { state, authError: null }
     case 'UPDATE_PASSWORD_ERROR':
-      console.log('updated password error')
-      return state
+      console.log('UPDATE_PASSWORD_ERROR')
+      return { ...state, authError: action.err.message }
+
+    // Update user
     case 'UPDATE_USER':
-      console.log('updated user')
+      console.log('UPDATE_USER')
       return state
     case 'UPDATE_USER_ERROR':
-      console.log('updated user error')
+      console.log('UPDATE_USER_ERROR')
+      return state
+
+    // Delete user
+    case 'DELETE_USER_AUTH':
+      console.log('DELETE_USER_AUTH')
+      return { state, authError: null }
+    case 'DELETE_USER_AUTH_ERROR':
+      console.log('DELETE_USER_AUTH_ERROR')
+      return { ...state, authError: action.err.message }
+    case 'DELETE_USER':
+      console.log('DELETE_USER')
+      return state
+    case 'DELETE_USER_ERROR':
+      console.log('DELETE_USER_ERROR')
       return state
     default:
       return state

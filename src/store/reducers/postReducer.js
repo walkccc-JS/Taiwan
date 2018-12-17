@@ -3,22 +3,22 @@ const initState = {}
 const postReducer = (state = initState, action) => {
   switch (action.type) {
     case 'ADD_POST':
-      console.log('added post', action.post)
+      console.log('ADD_POST', action.post)
       return state
     case 'ADD_POST_ERROR':
-      console.log('added post error', action.err)
+      console.log('ADD_POST_ERROR', action.err)
       return state
     case 'UPDATE_POST':
-      console.log('updated post', action.post)
+      console.log('UPDATE_POST', action.post)
       return state
     case 'UPDATE_POST_ERROR':
-      console.log('updated post error', action.err)
+      console.log('UPDATE_POST_ERROR', action.err)
       return state
     case 'DELETE_POST':
-      console.log('deleted post', action.postId)
+      console.log('DELETE_POST', action.postId)
       return state
     case 'DELETE_POST_ERROR':
-      console.log('deleted post error', action.err)
+      console.log('DELETE_POST_ERROR', action.err)
       return state
     default:
       return state

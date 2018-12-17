@@ -3,12 +3,21 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { deleteUser } from '../../store/actions/authActions'
 
 class User extends Component {
+  handleDelete = (e) => {
+    const { uid } = this.props.auth
+    console.log(uid)
+    this.props.deleteUser(uid)
+    this.props.history.push('/')
+  }
+
   render() {
     const { user, auth } = this.props
     // console.log(user)
     // console.log(auth)
+    // console.log(this.props)
 
     if (user) {
       return (
@@ -27,9 +36,16 @@ class User extends Component {
 
               </div>
               <div className="card-content">
-                <p><a href={'/' + user.id}>@{ user.id }</a></p>
+                <p>@{ user.id }</p>
                 <p><a href={'mailto:' + user.email}>{ user.email }</a></p>
                 <p><Link to={'/' + user.id + '/posts'}>See { user.firstName } { user.lastName }'s all posts</Link></p>
+                { user && user.email === auth.email ?
+                  <p>
+                    <Link to='#' onClick={this.handleDelete} className="red-text">
+                      Delete all data!
+                    </Link>
+                  </p>
+                  : null }
               </div>
             </div>
           </div>
@@ -64,8 +80,14 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteUser: (uid) => dispatch(deleteUser(uid))
+  }
+}
+
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect(props => {
     const uid = props.match.params.uid
     return (

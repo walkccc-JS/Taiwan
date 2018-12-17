@@ -17,28 +17,17 @@ class UpdateUser extends Component {
 
   componentDidMount() {
     const { auth, user } = this.props
-    console.log(user)
-
-    if (user) {
-      this.setState({
-        uid: auth.uid,
-        id: user.id,
-        email: user.email,
-        password: user.password,
-        firstName: user.firstName,
-        lastName: user.lastName
-      })
-    }
-  }
-
-  handleChange = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value
+    if (user) this.setState({ 
+      uid: auth.uid, 
+      ...user
     })
   }
 
+  handleChange = (e) => {
+    this.setState({ [e.target.id]: e.target.value })
+  }
+
   handleSubmit = (e) => {
-    // console.log(this.state)
     e.preventDefault()
     this.props.updateUser(this.state)
     this.props.history.push('/' + this.state.id)
@@ -98,11 +87,9 @@ class UpdateUser extends Component {
 const mapStateToProps = (state, ownProps) => {
   const users = state.firestore.ordered.users
   const user = users ? users[0] : null
-  const uid = user ? user.id : null
 
   return {
     user: user,
-    uid: uid,
     auth: state.firebase.auth
   }
 }

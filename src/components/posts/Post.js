@@ -39,7 +39,7 @@ class Post extends Component {
                 <Link to='#' onClick={this.handleDelete} className="red-text">
                   <i className="material-icons">delete</i>
                 </Link>
-                <Link to={'/edit/' + postId} post={post} className="blue-text">
+                <Link to={'/edit/posts/' + postId} post={post} className="blue-text">
                   <i className="material-icons">create</i>
                 </Link>
               </div>

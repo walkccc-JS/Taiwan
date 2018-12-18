@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { updateUser } from '../../store/actions/authActions'
 import { Redirect } from 'react-router-dom'
+import { updateUser } from '../../store/actions/authActions'
 
 class UpdateUser extends Component {
   state = {
-    uid: '',
     id: '',
     email: '',
     password: '',
@@ -16,15 +15,16 @@ class UpdateUser extends Component {
   }
 
   componentDidMount() {
-    const { auth, user } = this.props
-    if (user) this.setState({ 
-      uid: auth.uid, 
+    const { user } = this.props
+    if (user) this.setState({
       ...user
     })
   }
 
   handleChange = (e) => {
-    this.setState({ [e.target.id]: e.target.value })
+    this.setState({
+      [e.target.id]: e.target.value
+    })
   }
 
   handleSubmit = (e) => {
@@ -36,7 +36,8 @@ class UpdateUser extends Component {
   render() {
     const { auth, user } = this.props
 
-    if (user && auth.email !== user.email) return <Redirect to ={'/user/' + user.id} />
+    if (user && auth.email !== user.email) return <Redirect to ={'/' + user.id} />
+
     if (user) {
       return (
         <div className="container">
@@ -84,7 +85,8 @@ class UpdateUser extends Component {
     }
   }
 }
-const mapStateToProps = (state, ownProps) => {
+
+const mapStateToProps = (state) => {
   const users = state.firestore.ordered.users
   const user = users ? users[0] : null
 

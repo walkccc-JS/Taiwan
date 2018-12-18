@@ -24,10 +24,10 @@ class App extends Component {
               <Route exact path='/signup' component={SignUp} />
               <Route exact path='/create' component={AddPost} />
 
-              <Route path='/posts/:id' component={Post} />
-              <Route path='/edit/posts/:id' component={UpdatePost} />
+              <Route path='/posts/:pid' component={Post} />
+              <Route path='/edit/posts/:pid' component={UpdatePost} />
 
-              <Route path='/:uid/posts/:id' component={Post} />
+              <Route path='/:uid/posts/:pid' component={Post} />
               <Route path='/:uid/posts' component={Posts} />
               <Route path='/edit/:uid' component={UpdateUser} />
               <Route path='/:uid' component={User} />

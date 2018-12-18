@@ -7,7 +7,7 @@ import { Redirect } from 'react-router-dom'
 
 class UpdatePost extends Component {
   state = {
-    postId: this.props.postId,
+    pid: this.props.pid,
     title: '',
     content: ''
   }
@@ -32,7 +32,7 @@ class UpdatePost extends Component {
     e.preventDefault()
     console.log(this.state)
     this.props.updatePost(this.state)
-    this.props.history.push('/posts/' + this.state.postId)
+    this.props.history.push('/posts/' + this.state.pid)
   }
 
   render() {
@@ -68,19 +68,19 @@ class UpdatePost extends Component {
   }
 }
 const mapStateToProps = (state, ownProps) => {
-  const id = ownProps.match.params.id
+  const pid = ownProps.match.params.pid
   const posts = state.firestore.data.posts
-  const post = posts ? posts[id] : null
+  const post = posts ? posts[pid] : null
   return {
     post: post,
-    postId: id,
+    pid: pid,
     auth: state.firebase.auth
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updatePost: (postId) => dispatch(updatePost(postId))
+    updatePost: (pid) => dispatch(updatePost(pid))
   }
 }
 

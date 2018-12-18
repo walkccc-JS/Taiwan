@@ -9,13 +9,13 @@ import moment from 'moment'
 
 class Post extends Component {
   handleDelete = (e) => {
-    const { postId } = this.props
-    this.props.deletePost(postId)
+    const { pid } = this.props
+    this.props.deletePost(pid)
     this.props.history.push('/')
   }
 
   render() {
-    const { postId, post, auth } = this.props
+    const { pid, post, auth } = this.props
 
     if (!auth.uid) return <Redirect to ='/signin' />
     if (post) {
@@ -39,7 +39,7 @@ class Post extends Component {
                 <Link to='#' onClick={this.handleDelete} className="red-text">
                   <i className="material-icons">delete</i>
                 </Link>
-                <Link to={'/edit/posts/' + postId} post={post} className="blue-text">
+                <Link to={'/edit/posts/' + pid} post={post} className="blue-text">
                   <i className="material-icons">create</i>
                 </Link>
               </div>
@@ -66,20 +66,20 @@ class Post extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const id = ownProps.match.params.id
+  const pid = ownProps.match.params.pid
   const posts = state.firestore.data.posts
-  const post = posts ? posts[id] : null
+  const post = posts ? posts[pid] : null
 
   return {
     post: post,
-    postId: id,
+    pid: pid,
     auth: state.firebase.auth
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deletePost: (postId) => dispatch(deletePost(postId))
+    deletePost: (pid) => dispatch(deletePost(pid))
   }
 }
 

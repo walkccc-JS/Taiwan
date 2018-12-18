@@ -10,9 +10,7 @@ var config = {
   projectId: "taiwan-blog",
   storageBucket: "taiwan-blog.appspot.com",
   messagingSenderId: "991703831869"
-};
-firebase.initializeApp(config);
-
+}
 firebase.initializeApp(config)
 firebase.firestore().settings({ timestampsInSnapshots: true })
 

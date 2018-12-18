@@ -15,9 +15,6 @@ class User extends Component {
 
   render() {
     const { user, auth } = this.props
-    // console.log(user)
-    // console.log(auth)
-    // console.log(this.props)
 
     if (user) {
       return (

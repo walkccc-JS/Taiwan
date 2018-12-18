@@ -1,19 +1,18 @@
-export const signUp = (newUser) => {
+export const signUp = (user) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const fb = getFirebase()
     const db = getFirestore()
+    console.log(user)
 
-    fb.auth().createUserWithEmailAndPassword(
-      newUser.email,
-      newUser.password
-    ).then(res => {
+    fb.auth().createUserWithEmailAndPassword(user.email, user.password)
+    .then(res => {
       return db.collection('users').doc(res.user.uid).set({
-        id: newUser.id,
-        firstName: newUser.firstName,
-        lastName: newUser.lastName,
-        email: newUser.email,
-        password: newUser.password,
-        initials: newUser.firstName[0] + newUser.lastName[0]
+        id: user.id,
+        email: user.email,
+        password: user.password,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        initials: user.firstName[0] + user.lastName[0]
       })
     })
     .then(dispatch({ type: 'SIGNUP' }))

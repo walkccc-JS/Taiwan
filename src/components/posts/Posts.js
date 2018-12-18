@@ -34,7 +34,11 @@ export default compose(
     const uid = props.match.params.uid
     return (
       [
-        { collection: 'posts', where: ['authorId', '==', uid] }
+        { 
+          collection: 'posts',
+          // orderBy: ['createdAt', 'desc'],
+          where: ['authorId', '==', uid],
+        }
       ]
     )
   })

@@ -56,10 +56,10 @@ class Post extends Component {
             { post && post.authorUid === auth.uid ?
             <div className="card-action">
               <Link to='#' onClick={this.handleDelete} className="red-text">
-                <i className="material-icons">delete</i>
+                <i className="material-icons right">delete</i>
               </Link>
               <Link to={'/edit/posts/' + pid} post={post} className="blue-text">
-                <i className="material-icons">create</i>
+                <i className="material-icons right">create</i>
               </Link>
             </div> : null }
 

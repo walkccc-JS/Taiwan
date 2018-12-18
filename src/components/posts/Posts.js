@@ -6,13 +6,13 @@ import PostList from '../posts/PostList'
 
 class Posts extends Component {
   render() {
-    const { uid, posts } = this.props
+    const { posts } = this.props
 
     return (
       <div className="container">
         <div className="row">
           <div className="col s12 m6">
-            <PostList uid={uid} posts={posts} />
+            <PostList posts={posts} />
           </div>
         </div>
       </div>
@@ -21,9 +21,7 @@ class Posts extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-  const uid = props.match.params.uid
   return {
-    uid: uid,
     posts: state.firestore.ordered.posts
   }
 }
@@ -31,13 +29,13 @@ const mapStateToProps = (state, props) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect(props => {
-    const uid = props.match.params.uid
+    const id = props.match.params.id
     return (
       [
         { 
           collection: 'posts',
           // orderBy: ['createdAt', 'desc'],
-          where: ['authorId', '==', uid],
+          where: ['authorId', '==', id],
         }
       ]
     )

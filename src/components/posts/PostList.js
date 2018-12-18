@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PostSummary from './PostSummary'
 
-const PostList = ({ uid, posts }) => {
+const PostList = ({ posts }) => {
   return (
     <div className="post-list section">
       { posts && posts.map(post => {

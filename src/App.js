@@ -26,10 +26,10 @@ class App extends Component {
 
               <Route path='/edit/posts/:pid' component={UpdatePost} />
 
-              <Route exact path='/:uid/posts' component={Posts} />
-              <Route path='/:uid/posts/:pid' component={Post} />
-              <Route path='/edit/:uid' component={UpdateUser} />
-              <Route path='/:uid' component={User} />
+              <Route exact path='/:id/posts' component={Posts} />
+              <Route path='/:id/posts/:pid' component={Post} />
+              <Route path='/edit/:id' component={UpdateUser} />
+              <Route path='/:id' component={User} />
             </Switch>
           </div>
         </div>

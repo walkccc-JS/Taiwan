@@ -39,7 +39,7 @@ class User extends Component {
                 { user && user.email === auth.email ?
                   <p>
                     <Link to='#' onClick={this.handleDelete} className="red-text">
-                      Delete all data!
+                      Delete account & all data!
                     </Link>
                   </p>
                   : null }

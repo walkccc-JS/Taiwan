@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addPost } from '../../store/actions/postActions'
 import { Redirect } from 'react-router-dom'
+import { addPost } from '../../store/actions/postActions'
 
 class AddPost extends Component {
   state = {

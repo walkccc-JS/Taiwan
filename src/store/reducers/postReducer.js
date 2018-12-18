@@ -15,7 +15,7 @@ const postReducer = (state = initState, action) => {
       console.log('UPDATE_POST_ERROR', action.err)
       return state
     case 'DELETE_POST':
-      console.log('DELETE_POST', action.postId)
+      console.log('DELETE_POST', action.pid)
       return state
     case 'DELETE_POST_ERROR':
       console.log('DELETE_POST_ERROR', action.err)

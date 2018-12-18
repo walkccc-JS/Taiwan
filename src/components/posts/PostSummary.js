@@ -9,8 +9,8 @@ const PostSummary = ({ post }) => {
         <p>Posted by { post.authorFirstName } { post.authorLastName }</p>
         <p className="grey-text">Created at: { moment(post.createdAt.toDate()).calendar() }</p>
         { post.editedAt ? 
-          <p className="grey-text">Edited at: { moment(post.editedAt.toDate()).calendar() }</p>
-          : null }
+        <p className="grey-text">Edited at: { moment(post.editedAt.toDate()).calendar() }</p>
+        : null }
       </div>
     </div>
   )

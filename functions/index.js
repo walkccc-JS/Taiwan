@@ -13,8 +13,11 @@ exports.addPost = functions.firestore
   .onCreate(snap => {
     const post = snap.data()
     const notification = {
-      content: `Added '${post.title}'`,
       user: `${post.authorFirstName} ${post.authorLastName}`,
+      action: 'added',
+      title: post.title,
+      authorId: post.authorId,
+      url: snap.id,
       time: admin.firestore.FieldValue.serverTimestamp()
     }
     return createNotification(notification)
@@ -22,11 +25,15 @@ exports.addPost = functions.firestore
 
 exports.updatePost = functions.firestore
   .document('posts/{pid}')
-  .onUpdate(snap => {
-    const post = snap.data()
+  .onUpdate(change => {
+    console.log(change)
+    const post = change.after.data()
     const notification = {
-      content: `Updated '${post.title}'`,
       user: `${post.authorFirstName} ${post.authorLastName}`,
+      action: 'updated',
+      title: post.title,
+      authorId: post.authorId,
+      url: change.id,
       time: admin.firestore.FieldValue.serverTimestamp()
     }
     return createNotification(notification)
@@ -37,8 +44,9 @@ exports.deletePost = functions.firestore
   .onDelete(snap => {
     const post = snap.data()
     const notification = {
-      content: `Deleted '${post.title}'`,
       user: `${post.authorFirstName} ${post.authorLastName}`,
+      action: 'deleted',
+      title: post.title,
       time: admin.firestore.FieldValue.serverTimestamp()
     }
     return createNotification(notification)
@@ -52,8 +60,8 @@ exports.userJoined = functions.auth.user()
       .then(snap => {
         const newUser = snap.data()
         const notification = {
-          content: 'Joined the party',
           user: `${newUser.firstName} ${newUser.lastName}`,
+          action: 'joined the party',
           time: admin.firestore.FieldValue.serverTimestamp()
         }
         return createNotification(notification)

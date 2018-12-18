@@ -4,13 +4,15 @@ import 'firebase/auth'
 
 // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyDLHLfxLF4GuZZjRxKvtZ1Lfig9d1rOs54",
-  authDomain: "taiwan-cb56d.firebaseapp.com",
-  databaseURL: "https://taiwan-cb56d.firebaseio.com",
-  projectId: "taiwan-cb56d",
-  storageBucket: "",
-  messagingSenderId: "163307892861"
-}
+  apiKey: "AIzaSyCN4hrRAzDBDN5owsvIa0qT8cbIuoGrpeE",
+  authDomain: "taiwan-blog.firebaseapp.com",
+  databaseURL: "https://taiwan-blog.firebaseio.com",
+  projectId: "taiwan-blog",
+  storageBucket: "taiwan-blog.appspot.com",
+  messagingSenderId: "991703831869"
+};
+firebase.initializeApp(config);
+
 firebase.initializeApp(config)
 firebase.firestore().settings({ timestampsInSnapshots: true })
 

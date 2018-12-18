@@ -29,9 +29,11 @@ class UpdatePost extends Component {
   }
 
   handleSubmit = (e) => {
+    const { pid } = this.state
+    const { post } = this.props
     e.preventDefault()
     this.props.updatePost(this.state)
-    this.props.history.push('/posts/' + this.state.pid)
+    this.props.history.push('/' + post.authorId + '/posts/' + pid)
   }
 
   render() {

@@ -69,6 +69,11 @@ class UpdateUser extends Component {
             </div>
 
             <div className="input-field">
+              <label htmlFor="img">Avatar Url (Beta)</label>
+              <input type="text" id="img" value={this.state.img} onChange={this.handleChange} />
+            </div>
+
+            <div className="input-field">
               <button className="btn pink lighten-1">Update</button>
             </div>
 

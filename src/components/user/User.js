@@ -23,7 +23,7 @@ class User extends Component {
             <div>
               <div className="card-image">
                 { user.img ? 
-                <img src={user.img} alt="girl" />
+                <img src={user.img} alt="avatar" />
                 : <img src="https://i1.wp.com/blog.dcshow.cc/wp-content/uploads/2018/01/dc-show-cover.jpg?w=945" alt="girl" /> }
                 
                 <span className="card-title">{ user.firstName } { user.lastName }</span>

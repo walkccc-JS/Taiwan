@@ -11,6 +11,7 @@ export const addPost = (post) => {
       authorId: profile.id, 
       authorUid: authorUid,
       like: 0,
+      dislike: 0,
       createdAt: new Date()
     })
     .then(dispatch({ type: 'ADD_POST', post }))
@@ -45,14 +46,29 @@ export const deletePost = (pid) => {
 export const likePost = (pid) => {
   return (dispatch, getState, { getFirestore }) => {
     const db = getFirestore()
-    const like = db.collection('posts').doc(pid).get()
 
-    console.log(like)
-
-    db.collection('posts').doc(pid).update({
-      like: 1
+    db.collection('posts').doc(pid).get().then(doc => {
+      const like = doc.data().like + 1
+      db.collection('posts').doc(pid).update({
+        like: like
+      })
     })
     .then(dispatch({ type: 'LIKE_POST', pid }))
     .catch(err => dispatch({ type: 'LIKE_POST_ERR', err }))
+  }
+}
+
+export const dislikePost = (pid) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const db = getFirestore()
+
+    db.collection('posts').doc(pid).get().then(doc => {
+      const dislike = doc.data().dislike + 1
+      db.collection('posts').doc(pid).update({
+        dislike: dislike
+      })
+    })
+    .then(dispatch({ type: 'DISLIKE_POST', pid }))
+    .catch(err => dispatch({ type: 'DISLIKE_POST_ERR', err }))
   }
 }

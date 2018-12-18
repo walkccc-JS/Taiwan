@@ -5,12 +5,24 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import moment from 'moment'
 import { deletePost } from '../../store/actions/postActions'
+import { likePost } from '../../store/actions/postActions'
+import { dislikePost } from '../../store/actions/postActions'
 
 class Post extends Component {
   handleDelete = (e) => {
     const { pid } = this.props
     this.props.deletePost(pid)
     this.props.history.push('/')
+  }
+
+  handleLike = (e) => {
+    const { pid } = this.props
+    this.props.likePost(pid)
+  }
+
+  handleDislike = (e) => {
+    const { pid } = this.props
+    this.props.dislikePost(pid)
   }
 
   render() {
@@ -29,6 +41,8 @@ class Post extends Component {
               <p>Posted by <Link to={'/' + post.authorId}>
                 { post.authorFirstName } { post.authorLastName }
               </Link></p>
+              <p to='#' onClick={this.handleLike} className="green-text"><i className="material-icons">thumb_up</i>{ post.like }</p>
+              <p to='#' onClick={this.handleDislike} className="red-text"><i className="material-icons">thumb_down</i>{ post.dislike }</p>
               <p className="grey-text">Created at: { moment(post.createdAt.toDate()).calendar() }</p>
               { post.editedAt ? 
               <p className="grey-text">Edited at: { moment(post.editedAt.toDate()).calendar() }</p>
@@ -70,7 +84,9 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deletePost: (pid) => dispatch(deletePost(pid))
+    deletePost: (pid) => dispatch(deletePost(pid)),
+    likePost: (pid) => dispatch(likePost(pid)),
+    dislikePost: (pid) => dispatch(dislikePost(pid))
   }
 }
 

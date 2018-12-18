@@ -11,7 +11,8 @@ class UpdateUser extends Component {
     email: '',
     password: '',
     firstName: '',
-    lastName: ''    
+    lastName: '',
+    img: ''
   }
 
   componentDidMount() {
@@ -69,7 +70,7 @@ class UpdateUser extends Component {
             </div>
 
             <div className="input-field">
-              <label htmlFor="img">Avatar Url (Beta)</label>
+              <label htmlFor="img" className="active">Avatar Url (Beta)</label>
               <input type="text" id="img" value={this.state.img} onChange={this.handleChange} />
             </div>
 

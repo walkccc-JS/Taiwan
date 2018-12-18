@@ -10,10 +10,11 @@ export const addPost = (post) => {
       authorLastName: profile.lastName,
       authorId: profile.id, 
       authorUid: authorUid,
+      like: 0,
       createdAt: new Date()
     })
     .then(dispatch({ type: 'ADD_POST', post }))
-    .catch(err => dispatch({ type: 'ADD_POST_ERROR', err }))
+    .catch(err => dispatch({ type: 'ADD_POST_ERR', err }))
   }
 }
 
@@ -27,7 +28,7 @@ export const updatePost = (post) => {
       editedAt: new Date()
     })
     .then(dispatch({ type: 'UPDATE_POST', post }))
-    .catch(err => dispatch({ type: 'UPDATE_POST_ERROR', err }))
+    .catch(err => dispatch({ type: 'UPDATE_POST_ERR', err }))
   }
 }
 
@@ -37,6 +38,21 @@ export const deletePost = (pid) => {
 
     db.collection('posts').doc(pid).delete()
     .then(dispatch({ type: 'DELETE_POST', pid }))
-    .catch(err => dispatch({ type: 'DELETE_POST_ERROR', err }))
+    .catch(err => dispatch({ type: 'DELETE_POST_ERR', err }))
+  }
+}
+
+export const likePost = (pid) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const db = getFirestore()
+    const like = db.collection('posts').doc(pid).get()
+
+    console.log(like)
+
+    db.collection('posts').doc(pid).update({
+      like: 1
+    })
+    .then(dispatch({ type: 'LIKE_POST', pid }))
+    .catch(err => dispatch({ type: 'LIKE_POST_ERR', err }))
   }
 }

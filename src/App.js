@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
-import User from './components/user/User';
-import UpdateUser from './components/user/UpdateUser';
-import Dashboard from './components/dashboard/Dashboard';
-import Posts from './components/posts/Posts';
-import Post from './components/posts/Post';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
+import Dashboard from './components/dashboard/Dashboard';
+import User from './components/user/User';
+import UpdateUser from './components/user/UpdateUser';
+import Post from './components/posts/Post';
+import Posts from './components/posts/Posts';
 import AddPost from './components/posts/AddPost';
 import UpdatePost from './components/posts/UpdatePost';
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import Notifications from './Notifications'
-import PostList from '../posts/PostList'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
+import PostList from '../posts/PostList'
+import Notifications from './Notifications'
 
 class Dashboard extends Component {
   render() {

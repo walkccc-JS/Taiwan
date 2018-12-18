@@ -34,9 +34,8 @@ class UpdateUser extends Component {
   }
 
   render() {
-    const { auth, user } = this.props
-
-    if (user && auth.email !== user.email) return <Redirect to ={'/' + user.id} />
+    const { user, profile } = this.props
+    if (user && user.email !== profile.email) return <Redirect to ={'/' + user.id} />
 
     if (user) {
       return (
@@ -92,7 +91,7 @@ const mapStateToProps = (state) => {
 
   return {
     user: user,
-    auth: state.firebase.auth
+    profile: state.firebase.profile
   }
 }
 

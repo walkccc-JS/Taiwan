@@ -8,62 +8,56 @@ import { deleteUser } from '../../store/actions/authActions'
 class User extends Component {
   handleDelete = (e) => {
     const { uid } = this.props.auth
-    console.log(uid)
     this.props.deleteUser(uid)
     this.props.history.push('/')
   }
 
   render() {
-    const { user, auth } = this.props
+    const { user, profile } = this.props
 
-    if (user) {
-      return (
-        <div className="row">
-          <div className="col s12 m6 offset-m3">
-            <div className="card">
+    return (
+      <div className="row">
+        <div className="col s12 m6 offset-m3">
+          <div className="card">
+            { user ?
+            <div>
               <div className="card-image">
-                <img src="https://i1.wp.com/blog.dcshow.cc/wp-content/uploads/2018/01/dc-show-cover.jpg?w=945" alt="girl" />
+                { user.img ? 
+                <img src={user.img} alt="girl" />
+                : <img src="https://i1.wp.com/blog.dcshow.cc/wp-content/uploads/2018/01/dc-show-cover.jpg?w=945" alt="girl" /> }
+                
                 <span className="card-title">{ user.firstName } { user.lastName }</span>
 
-                { user && user.email === auth.email ?
-                  <Link to={'/edit/' + user.id} user={user} className="btn-floating halfway-fab waves-effect waves-light red">
-                    <i className="material-icons">create</i>
-                  </Link>
-                  : null }
-
+                { user && user.email === profile.email ?
+                <Link to={'/edit/' + user.id} user={user} className="btn-floating halfway-fab waves-effect waves-light red">
+                  <i className="material-icons">create</i>
+                </Link>
+                : null }
               </div>
               <div className="card-content">
                 <p>@{ user.id }</p>
                 <p><a href={'mailto:' + user.email}>{ user.email }</a></p>
                 <p><Link to={'/' + user.id + '/posts'}>See { user.firstName } { user.lastName }'s all posts</Link></p>
-                { user && user.email === auth.email ?
-                  <p>
-                    <Link to='#' onClick={this.handleDelete} className="red-text">
-                      Delete account & all data!
-                    </Link>
-                  </p>
-                  : null }
+                { user && user.email === profile.email ?
+                <p><Link to='#' onClick={this.handleDelete} className="red-text">
+                  Delete account & all data!
+                </Link></p>
+                : null }
               </div>
             </div>
-          </div>
-        </div>
-      )
-    } else {
-      return (
-        <div className="row">
-          <div className="col s12 m6 offset-m3">
-            <div className="card">
+            :
+            <div>
               <div className="card-image">
                 <img src="https://i1.wp.com/blog.dcshow.cc/wp-content/uploads/2018/01/dc-show-cover.jpg?w=945" alt="girl" />
               </div>
               <div className="card-content">
                 <p>Loading the user...</p>
               </div>
-            </div>
+            </div> }
           </div>
         </div>
-      )
-    }
+      </div>
+    )
   }
 }
 
@@ -73,7 +67,8 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     user: user,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    profile: state.firebase.profile
   }
 }
 

@@ -24,7 +24,6 @@ class App extends Component {
               <Route exact path='/signup' component={SignUp} />
               <Route exact path='/create' component={AddPost} />
 
-              <Route path='/posts/:pid' component={Post} />
               <Route path='/edit/posts/:pid' component={UpdatePost} />
 
               <Route exact path='/:uid/posts' component={Posts} />

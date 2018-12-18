@@ -33,7 +33,8 @@ class Post extends Component {
               { post.editedAt ? 
               <p className="grey-text">Edited at: { moment(post.editedAt.toDate()).calendar() }</p>
               : null }
-            </div> :
+            </div>
+            :
             <div className="card-content">
               <p>Loading the post...</p>
             </div> }

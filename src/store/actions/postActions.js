@@ -21,7 +21,7 @@ export const updatePost = (post) => {
   return (dispatch, getState, { getFirestore }) => {
     const db = getFirestore()
 
-    db.collection('posts').doc(post.postId).update({
+    db.collection('posts').doc(post.pid).update({
       title: post.title,
       content: post.content,
       editedAt: new Date()
@@ -31,12 +31,12 @@ export const updatePost = (post) => {
   }
 }
 
-export const deletePost = (postId) => {
+export const deletePost = (pid) => {
   return (dispatch, getState, { getFirestore }) => {
     const db = getFirestore()
 
-    db.collection('posts').doc(postId).delete()
-    .then(dispatch({ type: 'DELETE_POST', postId }))
+    db.collection('posts').doc(pid).delete()
+    .then(dispatch({ type: 'DELETE_POST', pid }))
     .catch(err => dispatch({ type: 'DELETE_POST_ERROR', err }))
   }
 }

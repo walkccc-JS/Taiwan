@@ -1,19 +1,18 @@
 import React, { Component } from 'react'
-import PostList from '../posts/PostList'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { Redirect } from 'react-router-dom'
+import PostList from '../posts/PostList'
 
 class Posts extends Component {
   render() {
-    const { posts, auth } = this.props
-    if (!auth.uid) return <Redirect to='/signin' />
+    const { uid, posts } = this.props
+
     return (
       <div className="container">
         <div className="row">
           <div className="col s12 m6">
-            <PostList posts={posts} />
+            <PostList uid={uid} posts={posts} />
           </div>
         </div>
       </div>
@@ -22,9 +21,10 @@ class Posts extends Component {
 }
 
 const mapStateToProps = (state, props) => {
+  const uid = props.match.params.uid
   return {
-    posts: state.firestore.ordered.posts,
-    auth: state.firebase.auth,
+    uid: uid,
+    posts: state.firestore.ordered.posts
   }
 }
 

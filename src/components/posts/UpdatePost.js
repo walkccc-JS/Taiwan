@@ -30,7 +30,6 @@ class UpdatePost extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state)
     this.props.updatePost(this.state)
     this.props.history.push('/posts/' + this.state.pid)
   }
@@ -67,13 +66,14 @@ class UpdatePost extends Component {
     }
   }
 }
-const mapStateToProps = (state, ownProps) => {
-  const pid = ownProps.match.params.pid
+const mapStateToProps = (state, props) => {
+  const pid = props.match.params.pid
   const posts = state.firestore.data.posts
   const post = posts ? posts[pid] : null
+
   return {
-    post: post,
     pid: pid,
+    post: post,
     auth: state.firebase.auth
   }
 }

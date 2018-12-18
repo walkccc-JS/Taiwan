@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
-import { deletePost } from '../../store/actions/postActions'
 import moment from 'moment'
+import { deletePost } from '../../store/actions/postActions'
 
 class Post extends Component {
   handleDelete = (e) => {

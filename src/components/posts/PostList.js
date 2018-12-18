@@ -7,7 +7,7 @@ const PostList = ({ uid, posts }) => {
     <div className="post-list section">
       { posts && posts.map(post => {
         return (
-          <Link to={'/' + uid + '/posts/' + post.id} key={post.id}>
+          <Link to={'/' + post.authorId + '/posts/' + post.id} key={post.id}>
             <PostSummary post={post} />
           </Link>
         )

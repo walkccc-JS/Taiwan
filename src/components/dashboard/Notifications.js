@@ -11,7 +11,7 @@ const Notifications = ({ notifications }) => {
           <span className="card-title">Notifications</span>
           : null }
           
-          <ul className="notifications">
+          <ul className="notifications truncate">
             { notifications && notifications.map(notification => {
               return (
                 <li key={notification.id}>

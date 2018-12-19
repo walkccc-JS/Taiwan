@@ -33,16 +33,24 @@ class Post extends Component {
         <div className="col s12 m8 offset-m2">
           <div className="card">
             
-            { post ? 
-            <div className="card-content black-text">
+            { post ?
+            <div className="card-content">
               <span className="card-title">{ post.title }</span>
               <p>{ post.content }</p>
               <br />
               <p>Posted by <Link to={'/' + post.authorId}>
                 { post.authorFirstName } { post.authorLastName }
               </Link></p>
-              <p to='#' onClick={this.handleLike} className="green-text"><i className="material-icons">thumb_up</i>{ post.like }</p>
-              <p to='#' onClick={this.handleDislike} className="red-text"><i className="material-icons">thumb_down</i>{ post.dislike }</p>
+
+              <div href="#" onClick={this.handleLike} class="btn-small white green-text z-depth-0">
+                <i className="material-icons left">thumb_up</i>
+                <span>{ post.like }</span>
+              </div>
+              <div href="#" onClick={this.handleDislike} class="btn-small white red-text z-depth-0">
+                <i className="material-icons left">thumb_down</i>
+                <span>{ post.dislike }</span>
+              </div>
+
               <p className="grey-text">Created at: { moment(post.createdAt.toDate()).calendar() }</p>
               { post.editedAt ? 
               <p className="grey-text">Edited at: { moment(post.editedAt.toDate()).calendar() }</p>

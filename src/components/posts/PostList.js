@@ -4,7 +4,7 @@ import PostSummary from './PostSummary'
 
 const PostList = ({ posts }) => {
   return (
-    <div className="post-list section">
+    <div>
       { posts && posts.map(post => {
         return (
           <Link to={'/' + post.authorId + '/posts/' + post.id} key={post.id}>

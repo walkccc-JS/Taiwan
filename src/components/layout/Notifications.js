@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 
 const Notifications = ({ notifications }) => {
-  console.log(notifications)
   return (
     <ul className="notifications truncate">
       { notifications && notifications.map(notification => {

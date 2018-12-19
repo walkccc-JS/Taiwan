@@ -16,9 +16,6 @@ class Navbar extends Component {
 
     const dropdown = document.querySelectorAll('.dropdown-trigger');
     M.Dropdown.init(dropdown, { constrainWidth: false });
-
-    const modal = document.querySelectorAll('.modal');
-    M.Modal.init(modal, {});
   }
 
   render() {
@@ -40,7 +37,7 @@ class Navbar extends Component {
                 <i className="material-icons black-text">menu</i>
               </Link>
 
-              <ul id="nav-mobile" className="right hide-on-med-and-down">
+              <ul id="nav-mobile" className="right hide-on-small-and-down">
                 <Link to='#' className="dropdown-trigger btn-floating orange" data-target="dropdown1">
                   <i className="material-icons">notifications</i>
                 </Link>

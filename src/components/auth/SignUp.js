@@ -29,49 +29,59 @@ class SignUp extends Component {
     if (auth.uid) return <Redirect to ='/' />
 
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit} className="white">
-          
-          <h5 className="grey-text text-darken-3">Sign Up</h5>
-        
-          <div className="input-field">
-            <label htmlFor="id">ID</label>
-            <input type="text" id="id" onChange={this.handleChange} />
-          </div>
+      <div className="row form-design z-depth-0">
+        <div className="col s12 l6 offset-l3">
+          <div className="card">
+            
+            <form onSubmit={this.handleSubmit} className="white">
+              <div className="card-action white pink-text">
+                <h3 className="center">Sign Up</h3>
+              </div>
 
-          <div className="input-field">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" onChange={this.handleChange} />
-          </div>
-          
-          <div className="input-field">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" onChange={this.handleChange} />
-          </div>
+              <div className="card-content">
 
-          <div className="input-field">
-            <label htmlFor="firstName">First Name</label>
-            <input type="text" id="firstName" onChange={this.handleChange} />
-          </div>
-          
-          <div className="input-field">
-            <label htmlFor="lastName">Last Name</label>
-            <input type="text" id="lastName" onChange={this.handleChange} />
-          </div>
+                <div className="form-field">
+                  <label htmlFor="id">ID</label>
+                  <input type="text" id="id" onChange={this.handleChange} />
+                </div><br />
 
-          <div className="input-field">
-            <label htmlFor="img">Avatar Url (Beta)</label>
-            <input type="text" id="img" onChange={this.handleChange} />
-          </div>
-          
-          <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Sign Up</button>
-            <div className="red-text center">
-              { authError ? <p>{ authError }</p> : null }
-            </div>
-          </div>
+                <div className="form-field">
+                  <label htmlFor="email">Email</label>
+                  <input type="email" id="email" onChange={this.handleChange} />
+                </div><br />
 
-        </form>
+                <div className="form-field">
+                  <label htmlFor="password">Password</label>
+                  <input type="password" id="password" onChange={this.handleChange} />
+                </div><br />
+
+                <div className="form-field">
+                  <label htmlFor="firstName">First Name</label>
+                  <input type="text" id="firstName" onChange={this.handleChange} />
+                </div><br />
+
+                <div className="form-field">
+                  <label htmlFor="lastName">Last Name</label>
+                  <input type="text" id="lastName" onChange={this.handleChange} />
+                </div><br />
+
+                <div className="form-field">
+                  <label htmlFor="img">Avatar Url (Beta)</label>
+                  <input type="text" id="img" onChange={this.handleChange} />
+                </div><br />
+
+                <div className="form-field center-align">
+                  <button className="btn-large indigo z-depth-0">Sign Up</button>
+                  <div className="red-text center">
+                    { authError ? <p>{ authError }</p> : null }
+                  </div>
+                </div><br />
+              
+              </div>
+            </form>
+
+          </div>
+        </div>
       </div>
     )
   }

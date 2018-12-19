@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { signIn } from '../../store/actions/authActions'
+// import './SignIn.css'
 
 class SignIn extends Component {
   state = {
@@ -30,7 +31,7 @@ class SignIn extends Component {
           <div className="card">
             
             <form onSubmit={this.handleSubmit} className="white">
-              <div className="card-action white pink-text">
+              <div className="card-action white">
                 <h3 className="center">Sign In</h3>
               </div>
 
@@ -47,7 +48,7 @@ class SignIn extends Component {
                 </div><br />
 
                 <div className="form-field center-align">
-                  <button className="btn-large indigo z-depth-0">Sign In</button>
+                  <button className="btn green z-depth-0">Sign In</button>
                   <div className="red-text center">
                     { authError ? <p>{ authError }</p> : null }
                   </div>

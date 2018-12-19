@@ -34,7 +34,7 @@ class SignUp extends Component {
           <div className="card">
             
             <form onSubmit={this.handleSubmit} className="white">
-              <div className="card-action white pink-text">
+              <div className="card-action white">
                 <h3 className="center">Sign Up</h3>
               </div>
 
@@ -71,7 +71,7 @@ class SignUp extends Component {
                 </div><br />
 
                 <div className="form-field center-align">
-                  <button className="btn-large indigo z-depth-0">Sign Up</button>
+                  <button className="btn green z-depth-0">Sign Up</button>
                   <div className="red-text center">
                     { authError ? <p>{ authError }</p> : null }
                   </div>

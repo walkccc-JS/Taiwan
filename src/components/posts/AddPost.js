@@ -26,21 +26,36 @@ class AddPost extends Component {
     if (!auth.uid) return <Redirect to ='/signin' />
 
     return (
-      <div className="container">
-        <form className="white" onSubmit={this.handleSubmit}>
-          <h5 className="grey-text text-darken-3">Create a New Post</h5>
-          <div className="input-field">
-            <input type="text" id='title' onChange={this.handleChange} />
-            <label htmlFor="title">Post Title</label>
+      <div className="row form-design z-depth-0">
+        <div className="col s12 l6 offset-l3">
+          <div className="card">
+            
+            <form className="white" onSubmit={this.handleSubmit}>
+              <div className="card-action white">
+                <h3 className="center">New Post</h3>
+              </div><br />
+
+              <div className="card-content">
+
+                <div className="form-field">
+                  <label htmlFor="title">Title</label>
+                  <input type="text" id='title' onChange={this.handleChange} />
+                </div><br />
+
+                <div className="form-field">
+                  <label htmlFor="content">Content</label>
+                  <textarea id="content" className="materialize-textarea" onChange={this.handleChange}></textarea>
+                </div><br />
+
+                <div className="form-field center-align">
+                  <button className="btn green z-depth-0">Create</button>
+                </div><br />
+
+              </div>  
+            </form>
+
           </div>
-          <div className="input-field">
-            <textarea id="content" className="materialize-textarea" onChange={this.handleChange}></textarea>
-            <label htmlFor="content">Post Content</label>
-          </div>
-          <div className="input-field">
-            <button className="btn pink lighten-1">Create</button>
-          </div>
-        </form>
+        </div>
       </div>
     )
   }

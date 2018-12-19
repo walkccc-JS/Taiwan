@@ -24,6 +24,20 @@ class Navbar extends Component {
       <SignedInLinks profile={profile} /> : 
       <SignedOutLinks />
 
+    // console.log(notifications)
+
+    // const noti = notifications !== undefined ?
+    //   <Link to='#' className="dropdown-trigger btn-floating orange" data-target="dropdown1">
+    //     <i className="material-icons">notifications</i>
+    //   </Link> :
+    //   null
+    
+    // const notiDrop = notifications !== undefined ?
+    //   <ul className="dropdown-content" id="dropdown1">
+    //     <Notifications notifications={notifications} />
+    //   </ul> :
+    //   null
+
     return (
       <div>
         <nav className="white nav-extended">
@@ -38,9 +52,8 @@ class Navbar extends Component {
               </Link>
 
               <ul id="nav-mobile" className="right hide-on-small-and-down">
-                <Link to='#' className="dropdown-trigger btn-floating orange" data-target="dropdown1">
-                  <i className="material-icons">notifications</i>
-                </Link>
+
+                {/* { noti } */}
 
                 <Link to='#' className="dropdown-trigger btn-floating indigo" data-target="dropdown2">
                   <i className="material-icons">account_circle</i>
@@ -59,9 +72,7 @@ class Navbar extends Component {
           {links}
         </ul>
 
-        <ul className="dropdown-content" id="dropdown1">
-          <Notifications notifications={notifications} />
-        </ul>
+        {/* { notiDrop } */}
 
         <ul className="dropdown-content" id="dropdown2">
           {links}

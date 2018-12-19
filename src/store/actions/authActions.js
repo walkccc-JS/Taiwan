@@ -81,14 +81,6 @@ export const deleteUser = (uid) => {
     const db = getFirestore()
     const currentUser = fb.auth().currentUser
 
-    currentUser.delete()
-    .then(dispatch({ type: 'DELETE_USER_AUTH ' }))
-    .catch(err => dispatch({ type: 'DELETE_USER_AUTH_ERR '}, err))
-
-    db.collection('users').doc(uid).delete()
-    .then(dispatch({ type: 'DELETE_USER', uid }))
-    .catch(err => dispatch({ type: 'DELETE_USER_ERR', err }))
-
     db.collection('posts').where('authorUid', '==', uid)
     .get()
     .then(querySnapshot => {
@@ -96,5 +88,13 @@ export const deleteUser = (uid) => {
         db.collection('posts').doc(doc.id).delete()
       })
     })
+
+    db.collection('users').doc(uid).delete()
+    .then(dispatch({ type: 'DELETE_USER', uid }))
+    .catch(err => dispatch({ type: 'DELETE_USER_ERR', err }))
+
+    currentUser.delete()
+    .then(dispatch({ type: 'DELETE_USER_AUTH ' }))
+    .catch(err => dispatch({ type: 'DELETE_USER_AUTH_ERR '}, err))
   }
 }

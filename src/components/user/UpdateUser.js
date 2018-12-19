@@ -40,45 +40,56 @@ class UpdateUser extends Component {
 
     if (user) {
       return (
-        <div className="container">
-          <form className="white" onSubmit={this.handleSubmit}>
-            <h5 className="grey-text text-darken-3">Edit your profile</h5>
+        <div className="row form-design z-depth-0">
+          <div className="col s12 l6 offset-l3">
+            <div className="card">
+              
+              <form className="white" onSubmit={this.handleSubmit}>
+                <div className="card-action white">
+                  <h3 className="center">Edit your profile</h3>
+                </div><br />
 
-            <div className="input-field">
-              <label htmlFor="id" className="active">ID</label>
-              <input type="text" id="id" value={this.state.id} onChange={this.handleChange} />
+                <div className="card-content">
+
+                  <div className="form-field">
+                    <label htmlFor="id">ID</label>
+                    <input type="text" id='id' value={this.state.id} onChange={this.handleChange} />
+                  </div><br />
+
+                  <div className="form-field">
+                    <label htmlFor="email" className="active">Email</label>
+                    <input type="email" id="email" value={this.state.email} onChange={this.handleChange} />
+                  </div><br />
+
+                  <div className="form-field">
+                    <label htmlFor="password" className="active">Password</label>
+                    <input type="password" id="password" value={this.state.password} onChange={this.handleChange} />
+                  </div><br />
+
+                  <div className="form-field">
+                    <label htmlFor="firstName" className="active">First Name</label>
+                    <input type="text" id="firstName" value={this.state.firstName} onChange={this.handleChange} />
+                  </div><br />
+
+                  <div className="form-field">
+                    <label htmlFor="lastName" className="active">Last Name</label>
+                    <input type="text" id="lastName" value={this.state.lastName} onChange={this.handleChange} />
+                  </div><br />
+
+                  <div className="form-field">
+                    <label htmlFor="img" className="active">Avatar Url (Beta)</label>
+                    <input type="text" id="img" value={this.state.img} onChange={this.handleChange} />
+                  </div><br />
+
+                  <div className="form-field center-align">
+                    <button className="btn green z-depth-0">Update</button>
+                  </div><br />
+
+                </div>  
+              </form>
+
             </div>
-
-            <div className="input-field">
-              <label htmlFor="email" className="active">Email</label>
-              <input type="email" id="email" value={this.state.email} onChange={this.handleChange} />
-            </div>
-
-            <div className="input-field">
-              <label htmlFor="password" className="active">Password</label>
-              <input type="password" id="password" value={this.state.password} onChange={this.handleChange} />
-            </div>
-
-            <div className="input-field">
-              <label htmlFor="firstName" className="active">First Name</label>
-              <input type="text" id="firstName" value={this.state.firstName} onChange={this.handleChange} />
-            </div>
-
-            <div className="input-field">
-              <label htmlFor="lastName" className="active">Last Name</label>
-              <input type="text" id="lastName" value={this.state.lastName} onChange={this.handleChange} />
-            </div>
-
-            <div className="input-field">
-              <label htmlFor="img" className="active">Avatar Url (Beta)</label>
-              <input type="text" id="img" value={this.state.img} onChange={this.handleChange} />
-            </div>
-
-            <div className="input-field">
-              <button className="btn pink lighten-1">Update</button>
-            </div>
-
-          </form>
+          </div>
         </div>
       )
     } else {

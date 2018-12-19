@@ -32,7 +32,6 @@ class User extends Component {
               <div className="col s12 m6 offset-m1 l6 offset-l1">
                 <h5 className="grey-text text-darken-3">{user.firstName} {user.lastName}</h5>
                 <h6 className="grey-text">@{user.id}</h6>
-                <p className="truncate">jfqkelf jkqlejf lqejflqej j klqefjl qej;jfqkelf jkqlejf lqejflqej j klqefjl qej;jfqkelf jkqlejf lqejflqej j klqefjl qej;jfqkelf jkqlejf lqejflqej j klqefjl qej;jfqkelf jkqlejf lqejflqej j klqefjl qej;jfqkelf jkqlejf lqejflqej j klqefjl qej;jfqkelf jkqlejf lqejflqej j klqefjl qej;jfqkelf jkqlejf lqejflqej j klqefjl qej;jfqkelf jkqlejf lqejflqej j klqefjl qej;</p>
                 <div>
                   <i className="material-icons left">email</i>
                   <a href={'mailto:' + user.email}>{ user.email }</a>
@@ -61,55 +60,11 @@ class User extends Component {
       )
     } else {
       return (
-        <h4 className="indigo-text">Loading the user...</h4>
+        <div className="container center-align">
+          <h4 className="indigo-text">Loading the user...</h4>
+        </div>
       )
     }
-
-
-
-
-
-    //     <div className="col s12 m6">
-    //       <div className="card">
-    //         { user ?
-    //         <div>
-    //           <div className="card-image">
-    //             { user.img ? 
-    //             <img src={user.img} alt="avatar" />
-    //             : <img src="https://i1.wp.com/blog.dcshow.cc/wp-content/uploads/2018/01/dc-show-cover.jpg?w=945" alt="girl" /> }
-                
-    //             <span className="card-title">{ user.firstName } { user.lastName }</span>
-
-    //             { user && user.email === profile.email ?
-    //             <Link to={'/edit/' + user.id} user={user} className="btn-floating halfway-fab waves-effect waves-light red">
-    //               <i className="material-icons">create</i>
-    //             </Link>
-    //             : null }
-    //           </div>
-    //           <div className="card-content">
-    //             <p>@{ user.id }</p>
-    //             <p><a href={'mailto:' + user.email}>{ user.email }</a></p>
-    //             { user && user.email === profile.email ?
-    //             <p><Link to='#' onClick={this.handleDelete} className="red-text">
-    //               Delete account & all data!
-    //             </Link></p>
-    //             : null }
-    //           </div>
-    //         </div>
-    //         :
-    //         <div>
-    //           <div className="card-image">
-    //             <img src="https://i1.wp.com/blog.dcshow.cc/wp-content/uploads/2018/01/dc-show-cover.jpg?w=945" alt="girl" />
-    //           </div>
-    //           <div className="card-content">
-    //             <p>Loading the user...</p>
-    //           </div>
-    //         </div> }
-    //         <PostList posts={posts} />
-    //       </div>
-    //     </div>
-    //   </div>
-    // )
   }
 }
 

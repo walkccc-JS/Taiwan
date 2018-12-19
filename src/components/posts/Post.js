@@ -42,11 +42,11 @@ class Post extends Component {
                 { post.authorFirstName } { post.authorLastName }
               </Link></p>
 
-              <div href="#" onClick={this.handleLike} class="btn-small white green-text z-depth-0">
+              <div href="#" onClick={this.handleLike} className="btn-small white green-text z-depth-0">
                 <i className="material-icons left">thumb_up</i>
                 <span>{ post.like }</span>
               </div>
-              <div href="#" onClick={this.handleDislike} class="btn-small white red-text z-depth-0">
+              <div href="#" onClick={this.handleDislike} className="btn-small white red-text z-depth-0">
                 <i className="material-icons left">thumb_down</i>
                 <span>{ post.dislike }</span>
               </div>

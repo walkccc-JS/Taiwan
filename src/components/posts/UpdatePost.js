@@ -42,27 +42,42 @@ class UpdatePost extends Component {
 
     if (post) {
       return (
-        <div className="container">
-          <form className="white" onSubmit={this.handleSubmit}>
-            <h5 className="grey-text text-darken-3">Edit {post.title}</h5>
-            <div className="input-field">
-              <input type="text" id='title' value={this.state.title} onChange={this.handleChange} />
-              <label htmlFor="title" className="active">Post Title</label>
+        <div className="row form-design z-depth-0">
+          <div className="col s12 l6 offset-l3">
+            <div className="card">
+              
+              <form className="white" onSubmit={this.handleSubmit}>
+                <div className="card-action white">
+                  <h3 className="center">Edit {post.title}</h3>
+                </div><br />
+
+                <div className="card-content">
+
+                  <div className="form-field">
+                    <label htmlFor="title">Title</label>
+                    <input type="text" id='title' value={this.state.title} onChange={this.handleChange} />
+                  </div><br />
+
+                  <div className="form-field">
+                    <label htmlFor="content">Content</label>
+                    <textarea id="content" className="materialize-textarea" value={this.state.content} onChange={this.handleChange}></textarea>
+                  </div><br />
+
+                  <div className="form-field center-align">
+                    <button className="btn green z-depth-0">Update</button>
+                  </div><br />
+
+                </div>  
+              </form>
+
             </div>
-            <div className="input-field">
-              <textarea id="content" value={this.state.content} className="materialize-textarea" onChange={this.handleChange}></textarea>
-              <label htmlFor="content" className="active">Post Content</label>
-            </div>
-            <div className="input-field">
-              <button className="btn pink lighten-1">Update</button>
-            </div>
-          </form>
+          </div>
         </div>
       )
     } else {
       return (
-        <div className="container center">
-          <p>Loading post...</p>
+        <div className="container center-align">
+          <h4 className="indigo-text">Loading post...</h4>
         </div>
       )
     }

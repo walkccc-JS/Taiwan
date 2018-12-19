@@ -16,22 +16,24 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Navbar />
-          <div className="container">
-            <Switch>
-              <Route exact path='/' component={Dashboard} />
-              <Route exact path='/signin' component={SignIn} />
-              <Route exact path='/signup' component={SignUp} />
-              <Route exact path='/create' component={AddPost} />
+          <header>
+            <Navbar />
+            <div className="container">
+              <Switch>
+                <Route exact path='/' component={Dashboard} />
+                <Route exact path='/signin' component={SignIn} />
+                <Route exact path='/signup' component={SignUp} />
+                <Route exact path='/create' component={AddPost} />
 
-              <Route path='/edit/posts/:pid' component={UpdatePost} />
+                <Route path='/edit/posts/:pid' component={UpdatePost} />
 
-              <Route exact path='/:id/posts' component={Posts} />
-              <Route path='/:id/posts/:pid' component={Post} />
-              <Route path='/edit/:id' component={UpdateUser} />
-              <Route path='/:id' component={User} />
-            </Switch>
-          </div>
+                <Route exact path='/:id/posts' component={Posts} />
+                <Route path='/:id/posts/:pid' component={Post} />
+                <Route path='/edit/:id' component={UpdateUser} />
+                <Route path='/:id' component={User} />
+              </Switch>
+            </div>
+          </header>
         </div>
       </BrowserRouter>
     );

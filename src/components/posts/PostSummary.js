@@ -3,16 +3,16 @@ import moment from 'moment'
 
 const PostSummary = ({ post }) => {
   return (
-    <div className="card z-depth-0 post-summary">
+    <div className="card">
       <div className="card-content grey-text text-darken-3">
         <div className="card-title truncate">{ post.title }</div>
         <p>Posted by { post.authorFirstName } { post.authorLastName }</p>
         
-        <div href="#" class="btn-small white green-text z-depth-0">
+        <div href="#" className="btn-small white green-text z-depth-0">
           <i className="material-icons left">thumb_up</i>
           <span>{ post.like }</span>
         </div>
-        <div href="#" class="btn-small white red-text z-depth-0">
+        <div href="#" className="btn-small white red-text z-depth-0">
           <i className="material-icons left">thumb_down</i>
           <span>{ post.dislike }</span>
         </div>

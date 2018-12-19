@@ -23,21 +23,21 @@ exports.addPost = functions.firestore
     return createNotification(notification)
 })
 
-exports.updatePost = functions.firestore
-  .document('posts/{pid}')
-  .onUpdate(change => {
-    console.log(change)
-    const post = change.after.data()
-    const notification = {
-      user: `${post.authorFirstName} ${post.authorLastName}`,
-      action: 'updated',
-      title: post.title,
-      authorId: post.authorId,
-      url: change.id,
-      time: admin.firestore.FieldValue.serverTimestamp()
-    }
-    return createNotification(notification)
-})
+// exports.updatePost = functions.firestore
+//   .document('posts/{pid}')
+//   .onUpdate(change => {
+//     console.log(change)
+//     const post = change.after.data()
+//     const notification = {
+//       user: `${post.authorFirstName} ${post.authorLastName}`,
+//       action: 'updated',
+//       title: post.title,
+//       authorId: post.authorId,
+//       url: change.id,
+//       time: admin.firestore.FieldValue.serverTimestamp()
+//     }
+//     return createNotification(notification)
+// })
 
 exports.deletePost = functions.firestore
   .document('posts/{pid}')

@@ -9,7 +9,7 @@ body {
   background: url() no-repeat;
   background-size: 100%;
   background-position: bottom;
-  background-color: #fafafa;
+  background-color: #ffffff;
 }
 
 form {
@@ -39,4 +39,12 @@ input[type=password]:not(.browser-default):focus:not([readonly]) + label {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+nav {
+  font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+.brand-logo {
+  font-family: 'Roboto Mono', monospace;
 }

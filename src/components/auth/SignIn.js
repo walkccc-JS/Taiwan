@@ -61,9 +61,7 @@ class SignIn extends Component {
               </div>
 
               <div className="control">
-                <Link to ="/signup" className="button is-primary">
-                  <strong>Sign up</strong>
-                </Link>
+                <Link to="/signup" className="button is-text">Sign Up</Link>
               </div>
             </div>
 

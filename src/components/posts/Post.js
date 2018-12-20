@@ -55,7 +55,7 @@ class Post extends Component {
                   <span className="image is-64x64">
                     { user && user.img ? 
                     <img src={user.img} alt="avatar" />
-                    : <img src="http://img.tagdelight.com/201807/1097.jpg" alt="girl" /> }
+                    : <img src="https://imgur.com/PfpPTaf.png" alt="avatar" /> }
                   </span>
                 </figure>
                 <div className="media-content">

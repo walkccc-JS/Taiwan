@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -139,14 +140,14 @@ class UpdateUserImage extends Component {
 
           { this.state.message ?
             <div className="center">
-              <div className="button is-success">
+
+              <Link to={'/' + user.id} className="button is-success">
                 <span className="icon is-small">
                   <i className="far fa-grin-alt"></i>
                 </span>
-                <span>
-                  done
-                </span>
-              </div>
+                <strong>done</strong>
+              </Link>
+
             </div>
           : null }
 

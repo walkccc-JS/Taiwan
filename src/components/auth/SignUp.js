@@ -104,8 +104,8 @@ class SignUp extends Component {
                 <button className="button is-link">Submit</button>
               </div>
               <div className="control">
-                <Link to ="/signin" className="button is-primary">
-                  <strong>Log in</strong>
+                <Link to ="/signin" className="button is-text">
+                  Log in
                 </Link>
               </div>
             </div>

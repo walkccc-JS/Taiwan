@@ -14,13 +14,16 @@ const SignedInButtons = (props) => {
         <a href={'/' + profile.id} className="navbar-item">
           Hi, {profile.id}
         </a>
-        <Link to={'/edit/' + profile.id} className="navbar-item">
-          Edit Account
-        </Link>
-        <hr className="navbar-divider" />
         <a href='/create' className="navbar-item">
           New Post
         </a>
+        <hr className="navbar-divider" />
+        <Link to={'/edit/' + profile.id} className="navbar-item">
+          Edit Account
+        </Link>
+        <Link to={'/' + profile.id + '/upload'} className="navbar-item">
+          Upload Avatar
+        </Link>
       </div>
     </div>
   )

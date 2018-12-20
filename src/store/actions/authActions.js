@@ -75,6 +75,20 @@ export const updateUser = (user) => {
   }
 }
 
+export const updateUserImage = (imageURL) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const fb = getFirebase()
+    const db = getFirestore()
+    const currentUser = fb.auth().currentUser
+
+    db.collection('users').doc(currentUser.uid).update({
+      img: imageURL
+    })
+    .then(dispatch({ type: 'UPDATE_USER_IMAGE', imageURL }))
+    .catch(err => dispatch({ type: 'UPDATE_USER_IMAGE_ERR', err }))
+  }  
+}
+
 export const deleteUser = (uid) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const fb = getFirebase()

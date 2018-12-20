@@ -48,6 +48,13 @@ const authReducer = (state = initState, action) => {
       console.log('UPDATE_USER_ERR')
       return state
 
+    case 'UPDATE_USER_IMAGE':
+      console.log('UPDATE_USER_IMAGE', action.imageURL)
+      return state
+    case 'UPDATE_USER_IMAGE_ERR':
+      console.log('UPDATE_USER_IMAGE_ERR')
+      return state
+
     // Delete user
     case 'DELETE_USER_AUTH':
       console.log('DELETE_USER_AUTH')

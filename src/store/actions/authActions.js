@@ -88,13 +88,15 @@ export const deleteUser = (uid) => {
         db.collection('posts').doc(doc.id).delete()
       })
     })
-
-    db.collection('users').doc(uid).delete()
-    .then(dispatch({ type: 'DELETE_USER', uid }))
-    .catch(err => dispatch({ type: 'DELETE_USER_ERR', err }))
-
-    currentUser.delete()
-    .then(dispatch({ type: 'DELETE_USER_AUTH ' }))
-    .catch(err => dispatch({ type: 'DELETE_USER_AUTH_ERR '}, err))
+    .then(() => {
+      db.collection('users').doc(uid).delete()
+      .then(dispatch({ type: 'DELETE_USER', uid }))
+      .catch(err => dispatch({ type: 'DELETE_USER_ERR', err }))
+    })
+    .finally(() => {
+      currentUser.delete()
+      .then(dispatch({ type: 'DELETE_USER_AUTH ' }))
+      .catch(err => dispatch({ type: 'DELETE_USER_AUTH_ERR '}, err))  
+    })
   }
 }

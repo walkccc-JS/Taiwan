@@ -66,7 +66,10 @@ class Post extends Component {
                       <span className="has-text-grey">{ user.message }</span>
                       : null }
                       { user && user.message ? <br /> : null }
-                      <span><time dateTime={moment(post.createdAt.toDate()).calendar()}>{moment(post.createdAt.toDate()).calendar()}</time></span>
+                      <span><time dateTime={moment(post.createdAt.toDate()).calendar()}>{ moment(post.createdAt.toDate()).calendar() }</time></span>
+                      { post.editedAt ? 
+                      <span><time dateTime={moment(post.editedAt.toDate()).calendar()}> · { moment(post.editedAt.toDate()).calendar() }</time></span>
+                      : null }
                     </p>
                   </div>
                 </div>

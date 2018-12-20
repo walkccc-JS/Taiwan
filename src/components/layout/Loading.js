@@ -4,7 +4,7 @@ const PostList = () => {
   return (
     <section className="section">
       <div className="container grid" style={{maxWidth: 1024}}>
-        <button class="button is-white is-loading">Loading</button>
+        <button className="button is-white is-loading">Loading</button>
       </div>
     </section>
   )

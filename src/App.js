@@ -9,6 +9,7 @@ import UpdateUser from './components/user/UpdateUser';
 import Post from './components/posts/Post';
 import AddPost from './components/posts/AddPost';
 import UpdatePost from './components/posts/UpdatePost';
+import ImageUpload from './components/user/ImageUpload';
 // import './debug.css';
 
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
                 <Route exact path='/signin' component={SignIn} />
                 <Route exact path='/signup' component={SignUp} />
                 <Route exact path='/create' component={AddPost} />
+                <Route exact path='/upload' component={ImageUpload} />
 
                 <Route path='/edit/posts/:pid' component={UpdatePost} />
 

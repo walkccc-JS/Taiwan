@@ -128,9 +128,9 @@ class UpdateUserImage extends Component {
               
               <div id="response" className="hidden">
                 <div id="messages"></div>
-                <progress value={this.state.progress} max="100" />
+                
               </div>
-
+              <progress className="progress" value={this.state.progress} max="100" />
             </label>
           </form>
 
@@ -138,7 +138,6 @@ class UpdateUserImage extends Component {
             <button className="button is-primary" onClick={this.handleUpload}>Upload</button>
           </div>
 
-          <progress className="has-text-primary" value={this.state.progress} max="100" />
           { this.state.message ?
           <div className="center">
             <p className="has-text-success">done!</p>

@@ -7,6 +7,7 @@ import moment from 'moment'
 import { deletePost } from '../../store/actions/postActions'
 import { likePost } from '../../store/actions/postActions'
 import { dislikePost } from '../../store/actions/postActions'
+import Loading from '../layout/Loading'
 import './Post.css'
 // import './debug.css'
 
@@ -129,11 +130,7 @@ class Post extends Component {
       )
     } else {
       return (
-        <section className="section">
-          <div className="container">
-            <p>Loading the post...</p>
-          </div>
-        </section>
+        <Loading />
       )
     }
 

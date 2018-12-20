@@ -5,6 +5,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import { updateUser } from '../../store/actions/authActions'
+import Loading from '../layout/Loading'
 
 class UpdateUser extends Component {
   state = {
@@ -136,9 +137,7 @@ class UpdateUser extends Component {
       )
     } else {
       return (
-        <div className="container center">
-          <p>Loading user...</p>
-        </div>
+        <Loading />
       )
     }
   }

@@ -5,6 +5,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import { updatePost } from '../../store/actions/postActions'
+import Loading from '../layout/Loading'
 
 class UpdatePost extends Component {
   state = {
@@ -96,9 +97,7 @@ class UpdatePost extends Component {
       )
     } else {
       return (
-        <div className="container center-align">
-          <h4 className="indigo-text">Loading post...</h4>
-        </div>
+        <Loading />
       )
     }
   }

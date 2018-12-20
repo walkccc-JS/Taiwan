@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import PostList from '../posts/PostList'
 import { deleteUser } from '../../store/actions/authActions'
+import PostList from '../posts/PostList'
+import Loading from '../layout/Loading'
 import './User.css'
 // import './debug.css'
 
@@ -55,8 +56,6 @@ class User extends Component {
                       <i className="fas fa-edit"></i>
                     </span>
                   </Link>
-                  
-
                 </div>
                 : null }
 
@@ -72,9 +71,7 @@ class User extends Component {
       )
     } else {
       return (
-        <div className="container center-align">
-          <h4 className="indigo-text">Loading the user...</h4>
-        </div>
+        <Loading />
       )
     }
   }

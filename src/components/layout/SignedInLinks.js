@@ -12,7 +12,7 @@ const SignedInButtons = (props) => {
 
       <div className="navbar-dropdown">
         <a href={'/' + profile.id} className="navbar-item">
-          Profile
+          Hi, {profile.id}
         </a>
         <Link to={'/edit/' + profile.id} className="navbar-item">
           Edit Account

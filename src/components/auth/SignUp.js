@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { signUp } from '../../store/actions/authActions'
@@ -103,7 +104,9 @@ class SignUp extends Component {
                 <button className="button is-link">Submit</button>
               </div>
               <div className="control">
-                <button className="button is-text">Cancel</button>
+                <Link to ="/signin" className="button is-primary">
+                  <strong>Log in</strong>
+                </Link>
               </div>
             </div>
 

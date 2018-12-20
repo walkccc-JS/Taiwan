@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -9,6 +10,7 @@ class UpdatePost extends Component {
   state = {
     pid: this.props.pid,
     title: '',
+    subtitle: '',
     content: ''
   }
 
@@ -17,6 +19,7 @@ class UpdatePost extends Component {
     if (post) {
       this.setState({
         title: post.title,
+        subtitle: post.subtitle,
         content: post.content
       })
     }
@@ -56,6 +59,16 @@ class UpdatePost extends Component {
                 <div className="control has-icons-left has-icons-right">
                   <input className="input" type="text" id="title" placeholder="Taiwan is great!" value={this.state.title} onChange={this.handleChange} />
                   <span className="icon is-small is-left">
+                    <i className="fas fa-smile-wink"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div className="field">
+                <label className="label">Subtitle</label>
+                <div className="control has-icons-left has-icons-right">
+                  <input className="input" type="text" id="subtitle" placeholder="Taiwan is beautiful!" value={this.state.subtitle} onChange={this.handleChange} />
+                  <span className="icon is-small is-left">
                     <i className="far fa-smile-beam"></i>
                   </span>
                 </div>
@@ -73,7 +86,7 @@ class UpdatePost extends Component {
                   <button className="button is-link">Update</button>
                 </div>
                 <div className="control">
-                  <button className="button is-text">Cancel</button>
+                  <Link to="/" className="button is-text">Cancel</Link>
                 </div>
               </div>
 

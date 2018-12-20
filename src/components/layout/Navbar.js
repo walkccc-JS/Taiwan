@@ -40,7 +40,7 @@ class Navbar extends Component {
         <div className="navbar-brand">
           <a href="/" className="navbar-item">
             <img src={Taiwan} alt="Taiwan" width="28" height="28" />
-            <span>Taiwan</span>
+            <span><strong>Taiwan</strong></span>
           </a>
 
           <Link to="#" role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">

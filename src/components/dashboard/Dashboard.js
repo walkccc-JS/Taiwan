@@ -11,13 +11,11 @@ class Dashboard extends Component {
     if (!auth.uid) return <Redirect to='/signin' />
 
     return (
-      <div className="dashboard container">
-        <div className="row">
-          <div className="col s12 m8">
-            <PostList posts={posts} />
-          </div>
+      <section className="section is-paddingless-horizontal">
+        <div className="container grid">
+          <PostList posts={posts} />
         </div>
-      </div>
+      </section>
     )
   }
 }

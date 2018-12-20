@@ -37,8 +37,8 @@ class User extends Component {
                     <p>
                       <strong>{user.firstName} {user.lastName}</strong> <a href={'/' + user.id}>@{user.id}</a><br />
                       <span><i className="fas fa-envelope"></i> {user.email}<br /></span>
-                      <Link to="/" onClick={this.handleDelete} >
-                        <strong>Delete all!</strong>
+                      <Link to="/" onClick={this.handleDelete} className="has-text-danger">
+                        <strong>Delete all! (BETA)</strong>
                       </Link>
                     </p>
                   </div>

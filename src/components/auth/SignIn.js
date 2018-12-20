@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { signIn } from '../../store/actions/authActions'
@@ -37,7 +38,7 @@ class SignIn extends Component {
             <div className="field">
               <label className="label">Email</label>
               <div className="control has-icons-left has-icons-right">
-                <input className="input" type="email" id="email" placeholder="Email input" onChange={this.handleChange} />
+                <input className="input" type="email" id="email" placeholder="your email" onChange={this.handleChange} />
                 <span className="icon is-small is-left">
                   <i className="fas fa-envelope"></i>
                 </span>
@@ -47,7 +48,7 @@ class SignIn extends Component {
             <div className="field">
               <label className="label">Password</label>
               <div className="control has-icons-left has-icons-right">
-                <input className="input" type="password" id="password" placeholder="Email input" onChange={this.handleChange} />
+                <input className="input" type="password" id="password" placeholder="your password" onChange={this.handleChange} />
                 <span className="icon is-small is-left">
                   <i className="fas fa-key"></i>
                 </span>
@@ -58,8 +59,11 @@ class SignIn extends Component {
               <div className="control">
                 <button className="button is-link">Submit</button>
               </div>
+
               <div className="control">
-                <button className="button is-text">Cancel</button>
+                <Link to ="/signup" className="button is-primary">
+                  <strong>Sign up</strong>
+                </Link>
               </div>
             </div>
 

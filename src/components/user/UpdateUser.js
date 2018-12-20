@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -12,6 +13,7 @@ class UpdateUser extends Component {
     password: '',
     firstName: '',
     lastName: '',
+    message: '',
     img: ''
   }
 
@@ -44,7 +46,7 @@ class UpdateUser extends Component {
           <div className="container grid" style={{maxWidth: 1024}}>
 
             <div className="title">
-              Sign Up
+              Edit Profile
             </div>
 
             <form onSubmit={this.handleSubmit} >
@@ -100,6 +102,16 @@ class UpdateUser extends Component {
               </div>
 
               <div className="field">
+                <label className="label">Message</label>
+                <div className="control has-icons-left has-icons-right">
+                  <input className="input" type="text" id="message" placeholder="Taiwan is good!" value={this.state.message} onChange={this.handleChange} />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-smile"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div className="field">
                 <label className="label">Avatar Url (Beta)</label>
                 <div className="control has-icons-left has-icons-right">
                   <input className="input" type="text" id="img" placeholder="https://imgur.com/x2PnWvZ.png" value={this.state.img} onChange={this.handleChange} />
@@ -114,7 +126,7 @@ class UpdateUser extends Component {
                   <button className="button is-link">Update</button>
                 </div>
                 <div className="control">
-                  <button className="button is-text">Cancel</button>
+                  <Link to="/" className="button is-text">Cancel</Link>
                 </div>
               </div>
 

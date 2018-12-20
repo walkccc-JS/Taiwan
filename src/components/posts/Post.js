@@ -61,8 +61,11 @@ class Post extends Component {
                   <div className="content">
                     <p>
                       <strong>{post.authorFirstName} {post.authorLastName}</strong> <a href={'/' + post.authorId}>@{post.authorId}</a><br />
-                      <span className="has-text-grey">Taiwan gogogo!<br />
-                      <time dateTime={moment(post.createdAt.toDate()).calendar()}>{moment(post.createdAt.toDate()).calendar()}</time></span>
+                      { user && user.message ?
+                      <span className="has-text-grey">{ user.message }</span>
+                      : null }
+                      { user && user.message ? <br /> : null }
+                      <span><time dateTime={moment(post.createdAt.toDate()).calendar()}>{moment(post.createdAt.toDate()).calendar()}</time></span>
                     </p>
                   </div>
                 </div>

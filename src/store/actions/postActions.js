@@ -25,6 +25,7 @@ export const updatePost = (post) => {
 
     db.collection('posts').doc(post.pid).update({
       title: post.title,
+      subtitle: post.subtitle,
       content: post.content,
       editedAt: new Date()
     })

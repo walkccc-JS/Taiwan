@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { addPost } from '../../store/actions/postActions'
@@ -6,6 +7,7 @@ import { addPost } from '../../store/actions/postActions'
 class AddPost extends Component {
   state = {
     title: '',
+    subtitle: '',
     content: ''
   }
 
@@ -46,6 +48,16 @@ class AddPost extends Component {
             </div>
 
             <div className="field">
+              <label className="label">Subitle</label>
+              <div className="control has-icons-left has-icons-right">
+                <input className="input" type="text" id="subtitle" placeholder="Taiwan is beautiful!" onChange={this.handleChange} />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-smile-wink"></i>
+                </span>
+              </div>
+            </div>
+
+            <div className="field">
               <label className="label">Content</label>
               <div className="control">
                 <textarea className="textarea" id="content" placeholder="Taiwan is awesome!" onChange={this.handleChange}></textarea>
@@ -57,7 +69,7 @@ class AddPost extends Component {
                 <button className="button is-link">Submit</button>
               </div>
               <div className="control">
-                <button className="button is-text">Cancel</button>
+                <Link to="/" className="button is-text">Cancel</Link>
               </div>
             </div>
 

@@ -3,59 +3,67 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { deleteUser } from '../../store/actions/authActions'
 import PostList from '../posts/PostList'
+import { deleteUser } from '../../store/actions/authActions'
+import './User.css'
+// import './debug.css'
 
 class User extends Component {
   handleDelete = (e) => {
     const { uid } = this.props.auth
     this.props.deleteUser(uid)
-    this.props.history.push('/')
+    this.props.history.push('/') 
   }
-
+  
   render() {
     const { profile, user, posts } = this.props
-    console.log(user)
+    // console.log(user)
 
     if (user) {
       return (
         <div>
-          <section className="container section" id="photos">
-            <div className="row">
-              <div className="col s12 m4 l4">
-                { user.img ? 
-                  <img src={user.img} alt="avatar" className="responsive-img" /> :
-                  <img src="https://i1.wp.com/blog.dcshow.cc/wp-content/uploads/2018/01/dc-show-cover.jpg?w=945" className="responsive-img" alt="girl" />
-                }
-              </div>
-
-              <div className="col s12 m6 offset-m1 l6 offset-l1">
-                <h5 className="grey-text text-darken-3">{user.firstName} {user.lastName}</h5>
-                <h6 className="grey-text">@{user.id}</h6>
-                <div>
-                  <i className="material-icons left">email</i>
-                  <a href={'mailto:' + user.email}>{ user.email }</a>
+          <section className="section">
+            <div className="container grid" style={{maxWidth: 1024}}>
+              <article className="media center">
+                <figure className="media-left">
+                  <span className="image is-64x64">
+                    { user.img ? 
+                    <img src={user.img} alt="avatar" />
+                    : <img src="http://img.tagdelight.com/201807/1097.jpg" alt="girl" /> }
+                  </span>
+                </figure>
+                <div className="media-content">
+                  <div className="content">
+                    <p>
+                      <strong>{user.firstName} {user.lastName}</strong> <a href={'/' + user.id}>@{user.id}</a><br />
+                      <span><i className="fas fa-envelope"></i> {user.email}<br /></span>
+                      <Link to="/" onClick={this.handleDelete} >
+                        <strong>Delete all!</strong>
+                      </Link>
+                    </p>
+                  </div>
                 </div>
-
-                <br />
 
                 { user.email === profile.email ? 
                 <div>
-                  <Link to={'/edit/' + user.id} user={user} className="btn-small indigo z-depth-0">
-                    <i className="material-icons left">create</i>
-                    <span>Edit Profile</span>
+                  <Link to={'/edit/' + user.id} user={user} className="button">
+                    <span className="icon is-small">
+                      <i className="fas fa-edit"></i>
+                    </span>
                   </Link>
                   
-                  <p><Link to='#' onClick={this.handleDelete} className="btn-small red z-depth-0">
-                    <i className="material-icons left">delete</i>
-                    <span>Delete! (Beta)</span>
-                  </Link></p>
+
                 </div>
                 : null }
-              </div>
+
+              </article>
             </div>
           </section>
-          <PostList posts={posts} />
+          <section className="section is-paddingless-horizontal">
+            <div className="container grid">
+              <PostList posts={posts} />
+            </div>
+          </section>
         </div>
       )
     } else {
@@ -68,7 +76,7 @@ class User extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   const users = state.firestore.ordered.users
   const user = users ? users[0] : null
 

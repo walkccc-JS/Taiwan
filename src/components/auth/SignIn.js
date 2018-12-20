@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { signIn } from '../../store/actions/authActions'
-// import './SignIn.css'
 
 class SignIn extends Component {
   state = {
@@ -26,40 +25,51 @@ class SignIn extends Component {
     if (auth.uid) return <Redirect to ='/' />
 
     return (
-      <div className="row form-design z-depth-0">
-        <div className="col s12 l6 offset-l3">
-          <div className="card">
-            
-            <form onSubmit={this.handleSubmit} className="white">
-              <div className="card-action white">
-                <h3 className="center">Sign In</h3>
-              </div>
+      <section className="section">
+        <div className="container grid" style={{maxWidth: 1024}}>
 
-              <div className="card-content">
-
-                <div className="form-field">
-                  <label htmlFor="email">Email</label>
-                  <input type="email" id="email" onChange={this.handleChange} />
-                </div><br />
-
-                <div className="form-field">
-                  <label htmlFor="password">Password</label>
-                  <input type="password" id="password" onChange={this.handleChange} />
-                </div><br />
-
-                <div className="form-field center-align">
-                  <button className="btn green z-depth-0">Sign In</button>
-                  <div className="red-text center">
-                    { authError ? <p>{ authError }</p> : null }
-                  </div>
-                </div><br />
-              
-              </div>
-            </form>
-
+          <div className="title">
+            Sign In
           </div>
+
+          <form onSubmit={this.handleSubmit} >
+
+            <div className="field">
+              <label className="label">Email</label>
+              <div className="control has-icons-left has-icons-right">
+                <input className="input" type="email" id="email" placeholder="Email input" onChange={this.handleChange} />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-envelope"></i>
+                </span>
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label">Password</label>
+              <div className="control has-icons-left has-icons-right">
+                <input className="input" type="password" id="password" placeholder="Email input" onChange={this.handleChange} />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-key"></i>
+                </span>
+              </div>
+            </div>
+
+            <div className="field is-grouped">
+              <div className="control">
+                <button className="button is-link">Submit</button>
+              </div>
+              <div className="control">
+                <button className="button is-text">Cancel</button>
+              </div>
+            </div>
+
+            <div className="red-text center">
+              { authError ? <p>{ authError }</p> : null }
+            </div>
+
+          </form>
         </div>
-      </div>
+      </section>
     )
   }
 }

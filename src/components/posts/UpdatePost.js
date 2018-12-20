@@ -42,37 +42,44 @@ class UpdatePost extends Component {
 
     if (post) {
       return (
-        <div className="row form-design z-depth-0">
-          <div className="col s12 l6 offset-l3">
-            <div className="card">
-              
-              <form className="white" onSubmit={this.handleSubmit}>
-                <div className="card-action white">
-                  <h3 className="center">Edit {post.title}</h3>
-                </div><br />
+        <section className="section">
+          <div className="container grid" style={{maxWidth: 1024}}>
 
-                <div className="card-content">
-
-                  <div className="form-field">
-                    <label htmlFor="title">Title</label>
-                    <input type="text" id='title' value={this.state.title} onChange={this.handleChange} />
-                  </div><br />
-
-                  <div className="form-field">
-                    <label htmlFor="content">Content</label>
-                    <textarea id="content" className="materialize-textarea" value={this.state.content} onChange={this.handleChange}></textarea>
-                  </div><br />
-
-                  <div className="form-field center-align">
-                    <button className="btn green z-depth-0">Update</button>
-                  </div><br />
-
-                </div>  
-              </form>
-
+            <div className="title">
+              Edit Your Post
             </div>
+
+            <form onSubmit={this.handleSubmit} >
+
+              <div className="field">
+                <label className="label">Title</label>
+                <div className="control has-icons-left has-icons-right">
+                  <input className="input" type="text" id="title" placeholder="Taiwan is great!" value={this.state.title} onChange={this.handleChange} />
+                  <span className="icon is-small is-left">
+                    <i className="far fa-smile-beam"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div className="field">
+                <label className="label">Content</label>
+                <div className="control">
+                  <textarea className="textarea" id="content" placeholder="Taiwan is awesome!" value={this.state.content} onChange={this.handleChange}></textarea>
+                </div>
+              </div>
+
+              <div className="field is-grouped">
+                <div className="control">
+                  <button className="button is-link">Update</button>
+                </div>
+                <div className="control">
+                  <button className="button is-text">Cancel</button>
+                </div>
+              </div>
+
+            </form>
           </div>
-        </div>
+        </section>
       )
     } else {
       return (

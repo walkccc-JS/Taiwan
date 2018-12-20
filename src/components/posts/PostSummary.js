@@ -3,26 +3,33 @@ import moment from 'moment'
 
 const PostSummary = ({ post }) => {
   return (
-    <div className="card">
-      <div className="card-content grey-text text-darken-3">
-        <div className="card-title truncate">{ post.title }</div>
-        <p>Posted by { post.authorFirstName } { post.authorLastName }</p>
-        
-        <div href="#" className="btn-small white green-text z-depth-0">
-          <i className="material-icons left">thumb_up</i>
-          <span>{ post.like }</span>
-        </div>
-        <div href="#" className="btn-small white red-text z-depth-0">
-          <i className="material-icons left">thumb_down</i>
-          <span>{ post.dislike }</span>
+    <section className="section is-paddingless-horizontal" style={{paddingTop: 0, paddingBottom: 0}}>
+      {/* <div className="container grid" style={{maxWidth: 1024}}> */}
+
+        <div className="card">
+          <div className="card-content">
+            <div className="media">
+              <div className="media-left">
+                <figure className="image is-48x48">
+                  <img src="https://bulma.io/images/placeholders/96x96.png" alt="img" />
+                </figure>
+              </div>
+              <div className="media-content">
+                <p className="title is-4">{ post.title }</p>
+                <p className="subtitle is-6">@{ post.authorId }</p>
+              </div>
+            </div>
+
+            <div className="content">
+              { post.content }
+              <br />
+              <time dateTime={moment(post.createdAt.toDate()).calendar()}>{ moment(post.createdAt.toDate()).calendar() }</time>
+            </div>
+          </div>
         </div>
 
-        <p className="grey-text">Created at: { moment(post.createdAt.toDate()).calendar() }</p>
-        { post.editedAt ? 
-        <p className="grey-text">Edited at: { moment(post.editedAt.toDate()).calendar() }</p>
-        : null }
-      </div>
-    </div>
+      {/* </div> */}
+    </section>
   )
 }
 

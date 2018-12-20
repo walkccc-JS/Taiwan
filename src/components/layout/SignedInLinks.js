@@ -1,25 +1,29 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { signOut } from '../../store/actions/authActions'
 
-const SignedInLinks = (props) => {
+const SignedInButtons = (props) => {
   const { profile } = props
 
   return (
-    <ul>
-      <li><a href={'/' + profile.id} className="black-text">Hi, {profile.id}</a></li>
-      <li><Link to={'/edit/' + profile.id} className="black-text">Edit Account</Link></li>
-      <li><a href='/create' className="black-text">New Post</a></li>
-      <li><a href='/' onClick={props.signOut} className="black-text">Log Out</a></li>
-    </ul>
+    <div className="navbar-item has-dropdown is-hoverable">
+      <Link to="#" className="navbar-link">
+        More
+      </Link>
+
+      <div className="navbar-dropdown">
+        <a href={'/' + profile.id} className="navbar-item">
+          Profile
+        </a>
+        <Link to={'/edit/' + profile.id} className="navbar-item">
+          Edit Account
+        </Link>
+        <hr className="navbar-divider" />
+        <a href='/create' className="navbar-item">
+          New Post
+        </a>
+      </div>
+    </div>
   )
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    signOut: () => dispatch(signOut())
-  }
-}
-
-export default connect(null, mapDispatchToProps)(SignedInLinks)
+export default SignedInButtons

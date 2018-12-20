@@ -1,84 +1,67 @@
 import React, { Component } from 'react'
-import M from 'materialize-css/dist/js/materialize.min.js'
+// import M from 'materialize-css/dist/js/materialize.min.js'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import SignedInButtons from './SignedInButtons'
 import SignedInLinks from './SignedInLinks'
-import SignedOutLinks from './SignedOutLinks'
-import Notifications from './Notifications'
+import SignedOutButtons from './SignedOutButtons'
+// import Notifications from './Notifications'
 import Taiwan from '../../img/taiwan.png'
 
 class Navbar extends Component {
   componentDidMount() {
-    const sidenav = document.querySelectorAll('.sidenav');
-    M.Sidenav.init(sidenav, {});
-
-    const dropdown = document.querySelectorAll('.dropdown-trigger');
-    M.Dropdown.init(dropdown, { constrainWidth: false });
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+    if ($navbarBurgers.length > 0) {
+      $navbarBurgers.forEach(el => {
+        el.addEventListener('click', () => {
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+        });
+      });
+    }
   }
 
   render() {
-    const { auth, profile, notifications } = this.props
-    const links = auth.uid ?
-      <SignedInLinks profile={profile} /> : 
-      <SignedOutLinks />
-
-    // console.log(notifications)
-
-    // const noti = notifications !== undefined ?
-    //   <Link to='#' className="dropdown-trigger btn-floating orange" data-target="dropdown1">
-    //     <i className="material-icons">notifications</i>
-    //   </Link> :
-    //   null
+    const { auth, profile } = this.props
+    const buttons = auth.uid ?
+      <SignedInButtons /> : 
+      <SignedOutButtons />
     
-    // const notiDrop = notifications !== undefined ?
-    //   <ul className="dropdown-content" id="dropdown1">
-    //     <Notifications notifications={notifications} />
-    //   </ul> :
-    //   null
+    const links = auth.uid ?
+      <SignedInLinks profile={profile} /> :
+      null
 
     return (
-      <div>
-        <nav className="white nav-extended">
-          <div className="nav-wrapper">
-            <div className="container">
+      <nav className="navbar" role="navigation" aria-label="main navigation">
+        <div className="navbar-brand">
+          <a href="/" className="navbar-item">
+            <img src={Taiwan} alt="Taiwan" width="28" height="28" />
+            <span>Taiwan</span>
+          </a>
 
-              <Link to='/' className="brand-logo black-text">
-                <span><img src={Taiwan} alt="taiwan" height={26} /> Taiwan</span>
-              </Link>
-              <Link to='#' data-target="mobile-demo" className="sidenav-trigger">
-                <i className="material-icons black-text">menu</i>
-              </Link>
+          <Link to="#" role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </Link>
+        </div>
 
-              <ul id="nav-mobile" className="right hide-on-small-and-down">
+        <div id="navbarBasicExample" className="navbar-menu">
+          <div className="navbar-start">
+            <Link to="/" className="navbar-item">
+              Home
+            </Link>
 
-                {/* { noti } */}
+            { links }
 
-                <Link to='#' className="dropdown-trigger btn-floating indigo" data-target="dropdown2">
-                  <i className="material-icons">account_circle</i>
-                </Link>
-              </ul>
-
-            </div>
           </div>
-        </nav>
-
-        <ul className="sidenav" id="mobile-demo">
-          <li><a href='/' className="black-text">
-            <i className="material-icons black-text">home</i>
-            Home
-          </a></li>
-          {links}
-        </ul>
-
-        {/* { notiDrop } */}
-
-        <ul className="dropdown-content" id="dropdown2">
-          {links}
-        </ul>
-
-      </div>
+          { buttons }
+        </div>
+      </nav>   
     )
   }
 }

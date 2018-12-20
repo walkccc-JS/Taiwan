@@ -29,60 +29,91 @@ class SignUp extends Component {
     if (auth.uid) return <Redirect to ='/' />
 
     return (
-      <div className="row form-design z-depth-0">
-        <div className="col s12 l6 offset-l3">
-          <div className="card">
-            
-            <form onSubmit={this.handleSubmit} className="white">
-              <div className="card-action white">
-                <h3 className="center">Sign Up</h3>
-              </div>
+      <section className="section">
+        <div className="container grid" style={{maxWidth: 1024}}>
 
-              <div className="card-content">
-
-                <div className="form-field">
-                  <label htmlFor="id">ID</label>
-                  <input type="text" id="id" onChange={this.handleChange} />
-                </div><br />
-
-                <div className="form-field">
-                  <label htmlFor="email">Email</label>
-                  <input type="email" id="email" onChange={this.handleChange} />
-                </div><br />
-
-                <div className="form-field">
-                  <label htmlFor="password">Password</label>
-                  <input type="password" id="password" onChange={this.handleChange} />
-                </div><br />
-
-                <div className="form-field">
-                  <label htmlFor="firstName">First Name</label>
-                  <input type="text" id="firstName" onChange={this.handleChange} />
-                </div><br />
-
-                <div className="form-field">
-                  <label htmlFor="lastName">Last Name</label>
-                  <input type="text" id="lastName" onChange={this.handleChange} />
-                </div><br />
-
-                <div className="form-field">
-                  <label htmlFor="img">Avatar Url (Beta)</label>
-                  <input type="text" id="img" onChange={this.handleChange} />
-                </div><br />
-
-                <div className="form-field center-align">
-                  <button className="btn green z-depth-0">Sign Up</button>
-                  <div className="red-text center">
-                    { authError ? <p>{ authError }</p> : null }
-                  </div>
-                </div><br />
-              
-              </div>
-            </form>
-
+          <div className="title">
+            Sign Up
           </div>
+
+          <form onSubmit={this.handleSubmit} >
+
+            <div className="field">
+              <label className="label"></label>
+              <div className="control has-icons-left has-icons-right">
+                <input className="input" type="id" id="id" placeholder="taiwanisgood" onChange={this.handleChange} />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-user"></i>
+                </span>
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label">Email</label>
+              <div className="control has-icons-left has-icons-right">
+                <input className="input" type="email" id="email" placeholder="taiwan@gmail.com" onChange={this.handleChange} />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-envelope"></i>
+                </span>
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label">Password</label>
+              <div className="control has-icons-left has-icons-right">
+                <input className="input" type="password" id="password" placeholder="at least 6-degit" onChange={this.handleChange} />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-key"></i>
+                </span>
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label">First Name</label>
+              <div className="control has-icons-left has-icons-right">
+                <input className="input" type="text" id="firstName" placeholder="Taiwan" onChange={this.handleChange} />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-user"></i>
+                </span>
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label">Last Name</label>
+              <div className="control has-icons-left has-icons-right">
+                <input className="input" type="text" id="lastName" placeholder="Taipei" onChange={this.handleChange} />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-user"></i>
+                </span>
+              </div>
+            </div>
+
+            <div className="field">
+              <label className="label">Avatar Url (Beta)</label>
+              <div className="control has-icons-left has-icons-right">
+                <input className="input" type="text" id="img" placeholder="https://imgur.com/x2PnWvZ.png" onChange={this.handleChange} />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-image"></i>
+                </span>
+              </div>
+            </div>
+
+            <div className="field is-grouped">
+              <div className="control">
+                <button className="button is-link">Submit</button>
+              </div>
+              <div className="control">
+                <button className="button is-text">Cancel</button>
+              </div>
+            </div>
+
+            <div className="red-text center">
+              { authError ? <p>{ authError }</p> : null }
+            </div>
+
+          </form>
         </div>
-      </div>
+      </section>
     )
   }
 }

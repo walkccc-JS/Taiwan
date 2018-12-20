@@ -40,57 +40,87 @@ class UpdateUser extends Component {
 
     if (user) {
       return (
-        <div className="row form-design z-depth-0">
-          <div className="col s12 l6 offset-l3">
-            <div className="card">
-              
-              <form className="white" onSubmit={this.handleSubmit}>
-                <div className="card-action white">
-                  <h3 className="center">Edit your profile</h3>
-                </div><br />
+        <section className="section">
+          <div className="container grid" style={{maxWidth: 1024}}>
 
-                <div className="card-content">
-
-                  <div className="form-field">
-                    <label htmlFor="id">ID</label>
-                    <input type="text" id='id' value={this.state.id} onChange={this.handleChange} />
-                  </div><br />
-
-                  <div className="form-field">
-                    <label htmlFor="email" className="active">Email</label>
-                    <input type="email" id="email" value={this.state.email} onChange={this.handleChange} />
-                  </div><br />
-
-                  <div className="form-field">
-                    <label htmlFor="password" className="active">Password</label>
-                    <input type="password" id="password" value={this.state.password} onChange={this.handleChange} />
-                  </div><br />
-
-                  <div className="form-field">
-                    <label htmlFor="firstName" className="active">First Name</label>
-                    <input type="text" id="firstName" value={this.state.firstName} onChange={this.handleChange} />
-                  </div><br />
-
-                  <div className="form-field">
-                    <label htmlFor="lastName" className="active">Last Name</label>
-                    <input type="text" id="lastName" value={this.state.lastName} onChange={this.handleChange} />
-                  </div><br />
-
-                  <div className="form-field">
-                    <label htmlFor="img" className="active">Avatar Url (Beta)</label>
-                    <input type="text" id="img" value={this.state.img} onChange={this.handleChange} />
-                  </div><br />
-
-                  <div className="form-field center-align">
-                    <button className="btn green z-depth-0">Update</button>
-                  </div><br />
-
-                </div>  
-              </form>
-
+            <div className="title">
+              Sign Up
             </div>
+
+            <form onSubmit={this.handleSubmit} >
+
+              <div className="field">
+                <label className="label"></label>
+                <div className="control has-icons-left has-icons-right">
+                  <input className="input" type="id" id="id" placeholder="taiwanisgood" value={this.state.id} onChange={this.handleChange} />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-user"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div className="field">
+                <label className="label">Email</label>
+                <div className="control has-icons-left has-icons-right">
+                  <input className="input" type="email" id="email" placeholder="taiwan@gmail.com" value={this.state.email} onChange={this.handleChange} />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-envelope"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div className="field">
+                <label className="label">Password</label>
+                <div className="control has-icons-left has-icons-right">
+                  <input className="input" type="password" id="password" placeholder="at least 6-degit" value={this.state.password} onChange={this.handleChange} />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-key"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div className="field">
+                <label className="label">First Name</label>
+                <div className="control has-icons-left has-icons-right">
+                  <input className="input" type="text" id="firstName" placeholder="Taiwan" value={this.state.firstName} onChange={this.handleChange} />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-user"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div className="field">
+                <label className="label">Last Name</label>
+                <div className="control has-icons-left has-icons-right">
+                  <input className="input" type="text" id="lastName" placeholder="Taipei" value={this.state.lastName} onChange={this.handleChange} />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-user"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div className="field">
+                <label className="label">Avatar Url (Beta)</label>
+                <div className="control has-icons-left has-icons-right">
+                  <input className="input" type="text" id="img" placeholder="https://imgur.com/x2PnWvZ.png" value={this.state.img} onChange={this.handleChange} />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-image"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div className="field is-grouped">
+                <div className="control">
+                  <button className="button is-link">Update</button>
+                </div>
+                <div className="control">
+                  <button className="button is-text">Cancel</button>
+                </div>
+              </div>
+
+            </form>
           </div>
-        </div>
+        </section>
       )
     } else {
       return (

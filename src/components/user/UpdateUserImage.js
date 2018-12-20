@@ -5,12 +5,69 @@ import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import { updateUserImage } from '../../store/actions/authActions'
 import { storage } from '../../config/fbConfig'
+import './UpdateUserImage.css'
+// import './debug.css'
 
 class UpdateUserImage extends Component {
+  componentDidMount() {
+    console.log("Upload Initialised");
+    const fileSelect   = document.getElementById('file-upload');
+
+    fileSelect.addEventListener('change', (e) => {
+      const files = e.target.files || e.dataTransfer.files;
+    
+      if (e.target.files[0]) {
+        const image = e.target.files[0]
+        this.setState({ image })
+      }
+
+      fileDragHover(e);
+      parseFile(files[0])
+      // for (let i = 0, f; f = files[i]; i++) {
+      //   parseFile(f);
+      // }
+    }, false);
+
+    function fileDragHover(e) {
+      var fileDrag = document.getElementById('file-drag');
+      e.stopPropagation();
+      e.preventDefault();
+      fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload');
+    }
+
+    function parseFile(file) {
+      // console.log(file.name);
+      output('<strong>' + encodeURI(file.name) + '</strong>');
+      
+      var imageName = file.name;
+
+      var isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName);
+      if (isGood) {
+        document.getElementById('start').classList.add("hidden");
+        document.getElementById('response').classList.remove("hidden");
+        document.getElementById('notimage').classList.add("hidden");
+        document.getElementById('file-image').classList.remove("hidden");
+        document.getElementById('file-image').src = URL.createObjectURL(file);
+      } else {
+        document.getElementById('file-image').classList.add("hidden");
+        document.getElementById('notimage').classList.remove("hidden");
+        document.getElementById('start').classList.remove("hidden");
+        document.getElementById('response').classList.add("hidden");
+        document.getElementById("file-upload-form").reset();
+      }
+    }
+
+    function output(msg) {
+      const m = document.getElementById('messages');
+      m.innerHTML = msg;
+    }
+  }
+
   state = {
     image: '',
     url: '',
-    progress: 0
+    progress: 0,
+    message: ''
   }
 
   handleChange = (e) => {
@@ -38,34 +95,56 @@ class UpdateUserImage extends Component {
           this.setState({ url })
           this.props.updateUserImage(url)
         })
+        .finally(() => {
+          this.setState({ message: 'done' })
+        })
       }
     )
   }
 
   render() {
+    // console.log(this.state.progress)
     const { user, profile } = this.props
     if (user && user.email !== profile.email) return <Redirect to ={'/' + user.id} />
-    const style = {
-      height: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center'
-    }
+
     return (
       <section className="section">
         <div className="container grid" style={{maxWidth: 1024}}>
 
-          <progress value={this.state.progress} max="100" />
-          <input type="file" onChange={this.handleChange} />
-          <button className="button" onClick={this.handleUpload}>Upload</button>
-          <br />
+          <div className="center"><h2>Update your avatar!</h2></div>
 
-          <figure>
-            <span className="image is-128x128">
-              <img src={this.state.url || 'https://via.placeholder.com/300x300'} alt="avatar"/>
-            </span>
-          </figure>
+          <form id="file-upload-form" className="uploader">
+            <input id="file-upload" type="file" name="fileUpload" accept="image/*" onChange={this.handleChange} />
+            <label htmlFor="file-upload" id="file-drag" style={{marginTop: 15, marginBottom: 15}}>
+
+              <img id="file-image" src="#" alt="Preview" className="hidden" />
+              
+              <div id="start">
+                <i className="fa fa-download" aria-hidden="true"></i>
+                <div>Select a file or drag here</div>
+                <div id="notimage" className="hidden">Please select an image</div>
+                <span id="file-upload-btn" className="btn btn-primary">Select a file</span>
+              </div>
+              
+              <div id="response" className="hidden">
+                <div id="messages"></div>
+                <progress value={this.state.progress} max="100" />
+              </div>
+
+            </label>
+          </form>
+
+          <div className="center">
+            <button className="button is-primary" onClick={this.handleUpload}>Upload</button>
+          </div>
+
+          <progress className="has-text-primary" value={this.state.progress} max="100" />
+          { this.state.message ?
+          <div className="center">
+            <p className="has-text-success">done!</p>
+          </div>
+          : null }
+
         </div>
       </section>
     )

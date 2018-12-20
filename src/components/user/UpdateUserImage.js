@@ -128,20 +128,26 @@ class UpdateUserImage extends Component {
               
               <div id="response" className="hidden">
                 <div id="messages"></div>
-                
+                <progress value={this.state.progress} max="100" />
               </div>
-              <progress className="progress" value={this.state.progress} max="100" />
             </label>
           </form>
 
           <div className="center">
-            <button className="button is-primary" onClick={this.handleUpload}>Upload</button>
+            <button className="button is-primary" onClick={this.handleUpload} style={{marginBottom: 15}}>Upload</button>
           </div>
 
           { this.state.message ?
-          <div className="center">
-            <p className="has-text-success">done!</p>
-          </div>
+            <div className="center">
+              <div className="button is-success">
+                <span className="icon is-small">
+                  <i className="far fa-grin-alt"></i>
+                </span>
+                <span>
+                  done
+                </span>
+              </div>
+            </div>
           : null }
 
         </div>

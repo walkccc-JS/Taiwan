@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'
+// import './debug.css'
 
 const PostSummary = ({ post }) => {
   return (

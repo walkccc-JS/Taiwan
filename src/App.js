@@ -9,6 +9,7 @@ import UpdateUser from './components/user/UpdateUser';
 import Post from './components/posts/Post';
 import AddPost from './components/posts/AddPost';
 import UpdatePost from './components/posts/UpdatePost';
+// import './debug.css';
 
 class App extends Component {
   render() {
@@ -16,8 +17,13 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <header>
-            <Navbar />
+            <section className="section is-paddingless">
+              <div className="container" >
+                <Navbar />
+              </div>
+            </section>
             <div className="container">
+            
               <Switch>
                 <Route exact path='/' component={Dashboard} />
                 <Route exact path='/signin' component={SignIn} />

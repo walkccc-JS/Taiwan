@@ -111,14 +111,14 @@ class Post extends Component {
                 <div className="field is-grouped">
                   
                   <div className="control">
-                    <button onClick={this.handleDislike} className="button is-success">
+                    <button onClick={this.handleLike} className="button is-success">
                       <i className="fas fa-thumbs-up"></i>
                       { post.like }
                     </button>
                   </div>
 
                   <div className="control">
-                    <button onClick={this.handleLike} className="button is-danger">
+                    <button onClick={this.handleDislike} className="button is-danger">
                       <i className="fas fa-thumbs-down"></i>
                       { post.dislike }
                     </button>

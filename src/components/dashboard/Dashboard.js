@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
-import { Redirect } from 'react-router-dom'
-import PostList from '../posts/PostList'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
+import { Redirect } from 'react-router-dom';
+import PostList from '../posts/PostList';
 
 class Dashboard extends Component {
   render() {
-    const { posts, auth } = this.props
-    if (!auth.uid) return <Redirect to='/signin' />
+    const { posts, auth } = this.props;
+    if (!auth.uid) return <Redirect to="/signin" />;
 
     return (
       <section className="section is-paddingless-horizontal">
@@ -16,17 +16,17 @@ class Dashboard extends Component {
           <PostList posts={posts} />
         </div>
       </section>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     posts: state.firestore.ordered.posts,
     notifications: state.firestore.ordered.notifications,
     auth: state.firebase.auth
-  }
-}
+  };
+};
 
 export default compose(
   connect(mapStateToProps),
@@ -34,4 +34,4 @@ export default compose(
     { collection: 'posts', orderBy: ['createdAt', 'desc'] },
     { collection: 'notifications', limit: 5, orderBy: ['time', 'desc'] }
   ])
-)(Dashboard)
+)(Dashboard);

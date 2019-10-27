@@ -19,23 +19,22 @@ class App extends Component {
         <div className="App">
           <header>
             <section className="section is-paddingless">
-              <div className="container" >
+              <div className="container">
                 <Navbar />
               </div>
             </section>
             <div className="container">
-            
               <Switch>
-                <Route exact path='/' component={Dashboard} />
-                <Route exact path='/signin' component={SignIn} />
-                <Route exact path='/signup' component={SignUp} />
-                <Route exact path='/create' component={AddPost} />
+                <Route exact path="/" component={Dashboard} />
+                <Route exact path="/signin" component={SignIn} />
+                <Route exact path="/signup" component={SignUp} />
+                <Route exact path="/create" component={AddPost} />
 
-                <Route path='/edit/posts/:pid' component={UpdatePost} />
-                <Route path='/:id/upload' component={UpdateUserImage} />
-                <Route path='/:id/posts/:pid' component={Post} />
-                <Route path='/edit/:id' component={UpdateUser} />
-                <Route path='/:id' component={User} />
+                <Route path="/edit/posts/:pid" component={UpdatePost} />
+                <Route path="/:id/upload" component={UpdateUserImage} />
+                <Route path="/:id/posts/:pid" component={Post} />
+                <Route path="/edit/:id" component={UpdateUser} />
+                <Route path="/:id" component={User} />
               </Switch>
             </div>
           </header>

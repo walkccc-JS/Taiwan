@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
-import { Redirect } from 'react-router-dom'
-import { updateUser } from '../../store/actions/authActions'
-import Loading from '../layout/Loading'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
+import { Redirect } from 'react-router-dom';
+import { updateUser } from '../../store/actions/authActions';
+import Loading from '../layout/Loading';
 
 class UpdateUser extends Component {
   state = {
@@ -16,46 +16,51 @@ class UpdateUser extends Component {
     lastName: '',
     message: '',
     img: ''
-  }
+  };
 
   componentDidMount() {
-    const { user } = this.props
-    if (user) this.setState({
-      ...user
-    })
+    const { user } = this.props;
+    if (user)
+      this.setState({
+        ...user
+      });
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value
-    })
-  }
+    });
+  };
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    this.props.updateUser(this.state)
-    this.props.history.push('/' + this.state.id)
-  }
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.updateUser(this.state);
+    this.props.history.push('/' + this.state.id);
+  };
 
   render() {
-    const { user, profile } = this.props
-    if (user && user.email !== profile.email) return <Redirect to ={'/' + user.id} />
+    const { user, profile } = this.props;
+    if (user && user.email !== profile.email)
+      return <Redirect to={'/' + user.id} />;
 
     if (user) {
       return (
         <section className="section">
-          <div className="container grid" style={{maxWidth: 1024}}>
+          <div className="container grid" style={{ maxWidth: 1024 }}>
+            <div className="title">Edit Profile</div>
 
-            <div className="title">
-              Edit Profile
-            </div>
-
-            <form onSubmit={this.handleSubmit} >
-
+            <form onSubmit={this.handleSubmit}>
               <div className="field">
                 <label className="label"></label>
                 <div className="control has-icons-left has-icons-right">
-                  <input className="input" type="id" id="id" placeholder="taiwanisgood" value={this.state.id} onChange={this.handleChange} />
+                  <input
+                    className="input"
+                    type="id"
+                    id="id"
+                    placeholder="taiwanisgood"
+                    value={this.state.id}
+                    onChange={this.handleChange}
+                  />
                   <span className="icon is-small is-left">
                     <i className="fas fa-user"></i>
                   </span>
@@ -65,7 +70,14 @@ class UpdateUser extends Component {
               <div className="field">
                 <label className="label">Email</label>
                 <div className="control has-icons-left has-icons-right">
-                  <input className="input" type="email" id="email" placeholder="taiwan@gmail.com" value={this.state.email} onChange={this.handleChange} />
+                  <input
+                    className="input"
+                    type="email"
+                    id="email"
+                    placeholder="taiwan@gmail.com"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
                   <span className="icon is-small is-left">
                     <i className="fas fa-envelope"></i>
                   </span>
@@ -75,7 +87,14 @@ class UpdateUser extends Component {
               <div className="field">
                 <label className="label">Password</label>
                 <div className="control has-icons-left has-icons-right">
-                  <input className="input" type="password" id="password" placeholder="at least 6-degit" value={this.state.password} onChange={this.handleChange} />
+                  <input
+                    className="input"
+                    type="password"
+                    id="password"
+                    placeholder="at least 6-degit"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                  />
                   <span className="icon is-small is-left">
                     <i className="fas fa-key"></i>
                   </span>
@@ -85,7 +104,14 @@ class UpdateUser extends Component {
               <div className="field">
                 <label className="label">First Name</label>
                 <div className="control has-icons-left has-icons-right">
-                  <input className="input" type="text" id="firstName" placeholder="Taiwan" value={this.state.firstName} onChange={this.handleChange} />
+                  <input
+                    className="input"
+                    type="text"
+                    id="firstName"
+                    placeholder="Taiwan"
+                    value={this.state.firstName}
+                    onChange={this.handleChange}
+                  />
                   <span className="icon is-small is-left">
                     <i className="fas fa-user"></i>
                   </span>
@@ -95,7 +121,14 @@ class UpdateUser extends Component {
               <div className="field">
                 <label className="label">Last Name</label>
                 <div className="control has-icons-left has-icons-right">
-                  <input className="input" type="text" id="lastName" placeholder="Taipei" value={this.state.lastName} onChange={this.handleChange} />
+                  <input
+                    className="input"
+                    type="text"
+                    id="lastName"
+                    placeholder="Taipei"
+                    value={this.state.lastName}
+                    onChange={this.handleChange}
+                  />
                   <span className="icon is-small is-left">
                     <i className="fas fa-user"></i>
                   </span>
@@ -105,7 +138,14 @@ class UpdateUser extends Component {
               <div className="field">
                 <label className="label">Message</label>
                 <div className="control has-icons-left has-icons-right">
-                  <input className="input" type="text" id="message" placeholder="Taiwan is good!" value={this.state.message} onChange={this.handleChange} />
+                  <input
+                    className="input"
+                    type="text"
+                    id="message"
+                    placeholder="Taiwan is good!"
+                    value={this.state.message}
+                    onChange={this.handleChange}
+                  />
                   <span className="icon is-small is-left">
                     <i className="fas fa-smile"></i>
                   </span>
@@ -115,7 +155,14 @@ class UpdateUser extends Component {
               <div className="field">
                 <label className="label">Avatar Url (Beta)</label>
                 <div className="control has-icons-left has-icons-right">
-                  <input className="input" type="text" id="img" placeholder="https://imgur.com/x2PnWvZ.png" value={this.state.img} onChange={this.handleChange} />
+                  <input
+                    className="input"
+                    type="text"
+                    id="img"
+                    placeholder="https://imgur.com/x2PnWvZ.png"
+                    value={this.state.img}
+                    onChange={this.handleChange}
+                  />
                   <span className="icon is-small is-left">
                     <i className="fas fa-image"></i>
                   </span>
@@ -127,46 +174,44 @@ class UpdateUser extends Component {
                   <button className="button is-link">Update</button>
                 </div>
                 <div className="control">
-                  <Link to="/" className="button is-text">Cancel</Link>
+                  <Link to="/" className="button is-text">
+                    Cancel
+                  </Link>
                 </div>
               </div>
-
             </form>
           </div>
         </section>
-      )
+      );
     } else {
-      return (
-        <Loading />
-      )
+      return <Loading />;
     }
   }
 }
 
-const mapStateToProps = (state) => {
-  const users = state.firestore.ordered.users
-  const user = users ? users[0] : null
+const mapStateToProps = state => {
+  const users = state.firestore.ordered.users;
+  const user = users ? users[0] : null;
 
   return {
     user: user,
     profile: state.firebase.profile
-  }
-}
+  };
+};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    updateUser: (user) => dispatch(updateUser(user))
-  }
-}
+    updateUser: user => dispatch(updateUser(user))
+  };
+};
 
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
   firestoreConnect(props => {
-    const id = props.match.params.id
-    return (
-      [
-        { collection: 'users', where: ['id', '==', id] }
-      ]
-    )
+    const id = props.match.params.id;
+    return [{ collection: 'users', where: ['id', '==', id] }];
   })
-)(UpdateUser)
+)(UpdateUser);

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const SignedOutButtons = () => {
   return (
@@ -14,7 +14,7 @@ const SignedOutButtons = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SignedOutButtons
+export default SignedOutButtons;

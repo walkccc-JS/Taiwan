@@ -1,44 +1,46 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-import { signIn } from '../../store/actions/authActions'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { signIn } from '../../store/actions/authActions';
 
 class SignIn extends Component {
   state = {
     email: '',
     password: ''
-  }
+  };
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value
-    })
-  }
+    });
+  };
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    this.props.signIn(this.state)
-  }
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.signIn(this.state);
+  };
 
   render() {
-    const { auth, authError } = this.props
-    if (auth.uid) return <Redirect to ='/' />
+    const { auth, authError } = this.props;
+    if (auth.uid) return <Redirect to="/" />;
 
     return (
       <section className="section">
-        <div className="container grid" style={{maxWidth: 1024}}>
+        <div className="container grid" style={{ maxWidth: 1024 }}>
+          <div className="title">Sign In</div>
 
-          <div className="title">
-            Sign In
-          </div>
-
-          <form onSubmit={this.handleSubmit} >
-
+          <form onSubmit={this.handleSubmit}>
             <div className="field">
               <label className="label">Email</label>
               <div className="control has-icons-left has-icons-right">
-                <input className="input" type="email" id="email" placeholder="your email" onChange={this.handleChange} />
+                <input
+                  className="input"
+                  type="email"
+                  id="email"
+                  placeholder="your email"
+                  onChange={this.handleChange}
+                />
                 <span className="icon is-small is-left">
                   <i className="fas fa-envelope"></i>
                 </span>
@@ -48,7 +50,13 @@ class SignIn extends Component {
             <div className="field">
               <label className="label">Password</label>
               <div className="control has-icons-left has-icons-right">
-                <input className="input" type="password" id="password" placeholder="your password" onChange={this.handleChange} />
+                <input
+                  className="input"
+                  type="password"
+                  id="password"
+                  placeholder="your password"
+                  onChange={this.handleChange}
+                />
                 <span className="icon is-small is-left">
                   <i className="fas fa-key"></i>
                 </span>
@@ -61,32 +69,36 @@ class SignIn extends Component {
               </div>
 
               <div className="control">
-                <Link to="/signup" className="button is-text">Sign Up</Link>
+                <Link to="/signup" className="button is-text">
+                  Sign Up
+                </Link>
               </div>
             </div>
 
             <div className="is-text-danger center">
-              { authError ? <p>{ authError }</p> : null }
+              {authError ? <p>{authError}</p> : null}
             </div>
-
           </form>
         </div>
       </section>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     auth: state.firebase.auth,
     authError: state.auth.authError
-  }
-}
+  };
+};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    signIn: (creds) => dispatch(signIn(creds))
-  }
-}
+    signIn: creds => dispatch(signIn(creds))
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignIn);
